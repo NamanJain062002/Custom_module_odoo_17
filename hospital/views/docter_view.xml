@@ -1,0 +1,47 @@
+<odoo>
+    <record model="ir.ui.view" id="hospital_docter_form_view_id">
+        <field name="name">hospital.docter.form.view.id</field>
+        <field name="model">hospital.docter</field>
+        <field name="arch" type="xml">
+            <form string="Hospital Form">
+                <header>
+                    <button name="%(hospital.hospital_paitent_action_id)d" type="action" string="Action Button" class="btn-primary"/>
+                </header>
+                    <group>
+                    <field name="name"/>
+                    <field name="doc_id"/>
+                        <field name="assigned_pat"/>
+                        <field name="dep_id"/>
+                        <field name="base_salary"/>
+                        <field name="allowance"/>
+                        <field name="ctc"/>
+                    </group>
+            </form>
+        </field>
+    </record>
+      <record model="ir.ui.view" id="hospital_docter_tree_view_id">
+        <field name="name">hospital.docter.tree.view.id</field>
+        <field name="model">hospital.docter</field>
+        <field name="arch" type="xml">
+            <tree string="Hospital Tree">
+                    <field name="name"/>
+                    <field name="doc_id"/>
+                    <field name="assigned_pat"/>
+                    <field name="dep_id"/>
+                     <field name="base_salary"/>
+                    <field name="allowance"/>
+                    <field name="ctc"/>
+            </tree>
+        </field>
+    </record>
+        <record model="ir.actions.act_window" id="hospital_docter_action_id">
+        <field name="name">Docters</field>
+        <field name="res_model">hospital.docter</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                There is no records of any Docter
+            </p>
+        </field>
+    </record>
+</odoo>

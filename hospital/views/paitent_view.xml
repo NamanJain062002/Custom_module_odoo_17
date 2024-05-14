@@ -1,0 +1,47 @@
+<odoo>
+    <!--    This is start of form view-->
+    <record model="ir.ui.view" id="hospital_paitent_form_view_id">
+        <field name="name">hospital.paitent.form.view.id</field>
+        <field name="model">hospital.paitent</field>
+        <field name="arch" type="xml">
+            <form string="Hospital Form">
+                <group>
+                    <field name="name"/>
+                    <field name="ward_number"/>
+                    <field name="bed_number"/>
+                    <field name="mobile"/>
+                    <field name="assigned_doc" widget="many2many_tags"/>
+                    <field name="gender"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <!--    This is a end of form view-->
+    <!--    This is Start of Tree view-->
+    <record model="ir.ui.view" id="hospital_paitent_tree_view_id">
+        <field name="name">hospital.paitent.tree.view.id</field>
+        <field name="model">hospital.paitent</field>
+        <field name="arch" type="xml">
+            <tree string="Hospital Tree" decoration-info="gender == 'male'" decoration-danger="gender == 'female'">
+                <field name="name"/>
+                <field name="ward_number"/>
+                <field name="bed_number"/>
+                <field name="mobile"/>
+                <field name="assigned_doc"/>
+                <field name="gender"/>
+            </tree>
+        </field>
+    </record>
+    <!--    Tree view ends here-->
+    <!--Action started here-->
+    <record model="ir.actions.act_window" id="hospital_paitent_action_id">
+        <field name="name">Paitents</field>
+        <field name="res_model">hospital.paitent</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                There is no records of any paitent
+            </p>
+        </field>
+    </record>
+</odoo>

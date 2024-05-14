@@ -1,0 +1,35 @@
+<odoo>
+    <record model="ir.ui.view" id="vehicle_wizard_view_id">
+        <field name="name">vehicle.wizard.view.id</field>
+        <field name="model">demo.demo</field>
+        <field name="arch" type="xml">
+            <form string="Wizard Form">
+                <div class="alert alert-warning"
+                     id="alert_draft_refund_tx"
+                     role="alert">
+                    <p>
+                        <strong>Warning!</strong>
+                        Any problem you can type the help button.
+                    </p>
+                </div>
+                <group>
+                    <field name="sub"/>
+                    <field name="query"/>
+                </group>
+                <footer>
+                    <button name="submit" string="Submit" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="demo_demo_action_id" model="ir.actions.act_window">
+        <field name="name">Demo LIST</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">demo.demo</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="vehicle_wizard_view_id"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

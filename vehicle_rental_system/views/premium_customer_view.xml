@@ -1,0 +1,49 @@
+<odoo>
+    <!--    This is start of form view-->
+    <record model="ir.ui.view" id="vehicle_precustomer_form_view_id">
+        <field name="name">vehicle.premium.form.view.id</field>
+        <field name="model">vehicle.premium</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle Form">
+                <group>
+                    <field name="name"/>
+                    <field name="cus_id"/>
+                    <field name="vehicle_type"/>
+                    <field name="rent_date"/>
+                    <field name="return_date"/>
+                    <field name="total_days"/>
+<!--                    <field name="total_days"/>-->
+                </group>
+            </form>
+        </field>
+    </record>
+    <!--    This is a end of form view-->
+    <!--    This is Start of Tree view-->
+    <record model="ir.ui.view" id="vehicle_precustomer_tree_view_id">
+        <field name="name">vehicle.premium.tree.view.id</field>
+        <field name="model">vehicle.premium</field>
+        <field name="arch" type="xml">
+            <tree string="Vehicle Tree">
+                <field name="name"/>
+                <field name="cus_id"/>
+                <field name="vehicle_type"/>
+                <field name="rent_date"/>
+                <field name="return_date"/>
+                <field name="total_days"/>
+<!--                <field name="total_days"/>-->
+            </tree>
+        </field>
+    </record>
+    <!--    Tree view ends here-->
+    <!--Action started here-->
+    <record model="ir.actions.act_window" id="vehicle_pri_customer_submenu">
+        <field name="name">Premium Customers</field>
+        <field name="res_model">vehicle.premium</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                There is no records of any Customer
+            </p>
+        </field>
+    </record>
+</odoo>

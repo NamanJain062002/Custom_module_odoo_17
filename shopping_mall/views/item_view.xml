@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="shopping_item_form_view_id">
+            <field name="name">shopping.item.form.view.id</field>
+            <field name="model">shopping.item</field>
+            <field name="arch" type="xml">
+                <form string="Shopping Mall Items">
+                    <header>
+                        <button name="%(shopping_review_action_id)d" type="action" string="Review" class="btn-primary"/>
+                    </header>
+                    <sheet>
+
+                        <group>
+                            <group>
+                                <field name="item_name"/>
+                                <field name="item_id"/>
+                            </group>
+                            <group>
+                                <field name="item_img" widget="image" class="oe_avatar"/>
+                                <field name="price"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--        Tree view starts here...-->
+        <record model="ir.ui.view" id="shopping_item_tree_view_id">
+            <field name="name">shopping.item.tree.view.id</field>
+            <field name="model">shopping.item</field>
+            <field name="arch" type="xml">
+                <tree string="Shopping Mall Items">
+                    <field name="item_img"/>
+                    <field name="item_name"/>
+                    <field name="item_id"/>
+                    <field name="price"/>
+                </tree>
+            </field>
+        </record>
+        <!--        Kanban view starts here....-->
+        <record id="test_model_view_kanban" model="ir.ui.view">
+            <field name="name">shopping.item.view.kanban</field>
+            <field name="model">shopping.item</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" sample="1">
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <strong>
+                                            <field name="item_name"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div>
+                                    <field name="item_img"/>
+                                </div>
+                                <div>
+                                    <field name="item_id"/>
+                                </div>
+                                <div>
+                                    <field name="price"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!--        Action starts here....-->
+        <record model="ir.actions.act_window" id="shopping_item_action_id">
+            <field name="name">Items</field>
+            <field name="res_model">shopping.item</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_empty_folder">
+                    There is no records of any item
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

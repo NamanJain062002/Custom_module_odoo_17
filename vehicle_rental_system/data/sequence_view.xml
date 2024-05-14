@@ -1,0 +1,8 @@
+<odoo>
+    <record model="ir.sequence" id="sequence_number_id">
+        <field name="name">Customer Sequence Number</field>
+        <field name="code">customer.sequence</field>
+        <field name="padding">4</field>
+        <field name="prefix">CUS</field>
+    </record>
+</odoo>

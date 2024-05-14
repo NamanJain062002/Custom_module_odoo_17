@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+        <record id="commission_sale_order_admin_form" model="ir.ui.view">
+            <field name="name">Commission sale order</field>
+            <field name="model">sale.admin</field>
+            <field name="arch" type="xml">
+                <form string="Commission Form">
+<!--                    <header>-->
+<!--                        <button name="get_orders" type="object" string="Get Orders"/>-->
+<!--                    </header>-->
+                    <sheet>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="saleperson"/>
+                        </group>
+                    </sheet>
+                    <notebook>
+                        <page string="Order Line">
+                                <field name="notebook_data"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="commission_sale_order_admin_tree" model="ir.ui.view">
+            <field name="name">Commission sale order</field>
+            <field name="model">sale.admin</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="saleperson"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_commission_sale_admin_id" model="ir.actions.act_window">
+            <field name="name">Commission sale order</field>
+            <field name="res_model">sale.admin</field>
+            <field name="view_mode">form,tree</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_empty_folder">
+                    There is no records of any Commission
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

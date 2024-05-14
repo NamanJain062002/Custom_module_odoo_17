@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--        Tree view starts here...-->
+    <record model="ir.ui.view" id="shopping_review_record_tree_view_id">
+        <field name="name">shopping.review.record.tree.view.id</field>
+        <field name="model">shopping.reviewrecord</field>
+        <field name="arch" type="xml">
+            <tree string="Shopping Mall Items Reviews">
+                <field name="item_name"/>
+                <field name="item_id"/>
+                <field name="rating"/>
+                <field name="reviews"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--        Action starts here....-->
+    <record model="ir.actions.act_window" id="shopping_review_record_action_id">
+        <field name="name">ReviewRecord</field>
+        <field name="res_model">shopping.reviewrecord</field>
+<!--        <field name="context">{'default_item_name':'Modi Ji'}</field>-->
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                There is no records of any review
+            </p>
+        </field>
+    </record>
+</odoo>

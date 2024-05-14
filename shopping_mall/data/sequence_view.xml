@@ -1,0 +1,15 @@
+<odoo>
+    <record id="customer_sequence_view_id" model="ir.sequence">
+        <field name="name">Customer Sequence</field>
+        <field name="code">customer.sequence</field>
+        <field name="prefix">CUS</field>
+        <field name="padding">4</field>
+    </record>
+
+    <record id="sequence_item_view_id" model="ir.sequence">
+        <field name="name">Item Sequence</field>
+        <field name="code">item.sequence</field>
+        <field name="prefix">IT</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

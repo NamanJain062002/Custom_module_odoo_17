@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_shopping_customer,shopping.customer,model_shopping_customer,base.group_user,1,1,1,1
+access_shopping_item,shopping.item,model_shopping_item,base.group_user,1,1,1,1
+access_shopping_review,shopping.review,model_shopping_review,base.group_user,1,1,1,1
+access_shopping_reviewrecord,shopping.reviewrecord,model_shopping_reviewrecord,base.group_user,1,1,1,1
+access_shopping_bill,shopping.bill,model_shopping_bill,base.group_user,1,1,1,1
+access_shopping_paidbill,shopping.paidbill,model_shopping_paidbill,base.group_user,1,1,1,1
+access_shopping_unpaidbill,shopping.unpaidbill,model_shopping_unpaidbill,base.group_user,1,1,1,1
+
+
+

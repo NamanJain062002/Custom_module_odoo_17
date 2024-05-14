@@ -1,0 +1,50 @@
+<odoo>
+    <record model="ir.ui.view" id="vehicle_location_form_view_id">
+        <field name="name">vehicle.location.form.view.id</field>
+        <field name="model">vehicle.location</field>
+        <field name="arch" type="xml">
+            <form string="Location Form">
+                <group>
+                    <field name="location_name"/>
+                    <field name="two_wheelers"/>
+                    <field name="four_wheelers"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="vehicle_location_tree_view_id">
+        <field name="name">vehicle.location.tree.view.id</field>
+        <field name="model">vehicle.location</field>
+        <field name="arch" type="xml">
+            <tree string="TwoWheelocation">
+                <field name="location_name"/>
+                <field name="two_wheelers"/>
+                <field name="four_wheelers"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_order_form_view_id">
+        <field name="name">sale.order.tree.view.id</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="created_by"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="vehicle_location_action_id">
+        <field name="name">Locations</field>
+        <field name="res_model">vehicle.location</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                There is no records of any Location
+            </p>
+        </field>
+    </record>
+</odoo>

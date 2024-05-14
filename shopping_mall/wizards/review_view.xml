@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record model="ir.ui.view" id="shopping_wizard_view_id">
+            <field name="name">shopping.wizard.view.id</field>
+            <field name="model">shopping.review</field>
+            <field name="arch" type="xml">
+                <form string="Wizard Form">
+                    <group>
+<!--                        <field name="review_id"/>-->
+                        <field name="stars"/>
+                        <field name="review"/>
+
+                    </group>
+                    <footer>
+                        <button name="submit" string="Submit" type="object" class="btn-primary"/>
+                        <button string="Cancel" special="cancel" class="btn-primary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="shopping_review_action_id" model="ir.actions.act_window">
+            <field name="name">Review LIST</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shopping.review</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="shopping_wizard_view_id"/>
+            <field name="target">new</field>
+        </record>
+</odoo>

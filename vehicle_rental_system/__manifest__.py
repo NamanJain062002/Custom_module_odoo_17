@@ -1,0 +1,21 @@
+{
+    'name': 'Vehicle Rental System',
+    'version': '1.0',
+    'summary': 'Mange the rental vehicle',
+    'author': 'Naman Jain',
+    'depends': ['base','sale'],
+    'data': ['security/ir.model.access.csv',
+             'wizard/demo_view.xml',
+             'views/customer_view.xml',
+             'views/premium_customer_view.xml',
+             'views/driver_view.xml',
+             'views/twowheeler_view.xml',
+             'views/fourwheeler_view.xml',
+             'views/location_view.xml',
+             'data/sequence_view.xml',
+             'views/menu_view.xml',
+             ],
+
+    'installable': True,
+    'application': True,
+}

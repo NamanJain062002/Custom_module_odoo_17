@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="shopping_customer_form_view_id">
+            <field name="name">shopping.customer.form.view.id</field>
+            <field name="model">shopping.customer</field>
+            <field name="arch" type="xml">
+
+                <form string="Shopping Mall Customers">
+                    <field name="status" widget="statusbar"/>
+                    <sheet>
+
+
+                        <div name="button_box" position="inside">
+                            <button class="oe_stat_button" type="object" name="get_super_customers"
+                                    icon="fa-user">
+                                <field string="Super Customers" name="super_customer_count" widget="statinfo"/>
+                            </button>
+
+                        </div>
+                        <group>
+
+                            <group>
+                                <field name="name"/>
+                                <field name="cus_id"/>
+                                <field name="shopping_date"/>
+                            </group>
+                            <group>
+                                <field name="billing_counter"/>
+                                <field name="amount_paid"/>
+                                <field name="supper_customer"/>
+                            </group>
+                            <group>
+                                <field name="bill_amount"/>
+                                <field name="gst"/>
+                                <field name="total_amount"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Items">
+                                <field name="items" widget="one2many_list">
+                                    <tree editable="bottom">
+                                        <field name="item_id"/>
+                                        <field name="item_img"/>
+                                        <field name="price"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--        Tree view starts here...-->
+        <record model="ir.ui.view" id="shopping_customer_tree_view_id">
+            <field name="name">shopping.customer.tree.view.id</field>
+            <field name="model">shopping.customer</field>
+            <field name="arch" type="xml">
+                <tree string="Shopping Mall Customers">
+                    <field name="name"/>
+                    <field name="cus_id"/>
+                    <field name="shopping_date"/>
+                    <field name="billing_counter"/>
+                    <field name="amount_paid"/>
+                    <field name="supper_customer"/>
+                    <field name="items"/>
+                    <field name="bill_amount"/>
+                    <field name="gst"/>
+                    <field name="total_amount"/>
+                </tree>
+            </field>
+        </record>
+        <!--        Search view starts here-->
+        <record model="ir.ui.view" id="shopping_customer_search_view_id">
+            <field name="name">shopping.customer.search.view.id</field>
+            <field name="model">shopping.customer</field>
+            <field name="arch" type="xml">
+                <search position="inside">
+                    <field name="name"/>
+                    <field name="cus_id"/>
+                    <field name="shopping_date"/>
+                    <field name="billing_counter"/>
+                    <field name="supper_customer"/>
+                    <field name="items"/>
+                    <field name="bill_amount"/>
+                    <field name="gst"/>
+                    <field name="total_amount"/>
+                      <filter string="Supper Customer" name="super_customer" domain="[('supper_customer', '=', True)]"/>
+                    <!--                    <searchpanel>-->
+                    <!--                        <field name="supper_customer"/>-->
+                    <!--                    </searchpanel>-->
+                </search>
+            </field>
+        </record>
+        <!--        Action starts here....-->
+        <record model="ir.actions.act_window" id="shopping_customer_action_id">
+            <field name="name">Customers</field>
+            <field name="res_model">shopping.customer</field>
+            <field name="view_mode">tree,form</field>
+<!--            Use context to pass default value-->
+            <field name="context">{'default_name':'Customer', 'search_default_super_customer': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_empty_folder">
+                    There is no records of any Customer
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

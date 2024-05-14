@@ -1,0 +1,38 @@
+<odoo>
+    <record model="ir.ui.view" id="hospital_department_form_view_id">
+        <field name="name">hospital.department.form.view.id</field>
+        <field name="model">hospital.department</field>
+        <field name="arch" type="xml">
+            <form string="Hospital Form">
+                <group>
+                    <field name="name"/>
+                    <field name="doc_ids"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hospital_department_tree_view_id">
+        <field name="name">hospital.department.tree.view.id</field>
+        <field name="model">hospital.department</field>
+        <field name="arch" type="xml">
+            <tree string="Hospital Tree">
+                <field name="name"/>
+                <field name="doc_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hospital_department_action_id">
+        <field name="name">Department</field>
+        <field name="res_model">hospital.department</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                There is no records of any Department
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

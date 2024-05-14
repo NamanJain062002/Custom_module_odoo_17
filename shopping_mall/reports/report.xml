@@ -1,0 +1,66 @@
+<odoo>
+    <template id="report_shopping_customer">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Customer Report</h2>
+                        <p>
+                            <span t-field="o.name"/>
+                            <span t-field="o.shopping_date"/>
+                        </p>
+                        <h3>CUSTOMER ID #
+                            <span t-field="o.cus_id"/>
+                        </h3>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>billing_counter</th>
+                                    <th>supper_customer</th>
+                                    <th>bill_amount</th>
+                                    <th>gst</th>
+                                    <th>total_amount</th>
+                                    <!-- Add more column headers as needed -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Loop through data and display rows -->
+                                <tr>
+                                    <td>
+                                        <span t-field="o.billing_counter"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o.supper_customer and 'Yes' or 'No'"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="o.bill_amount"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.gst"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.total_amount"/>
+                                    </td>
+                                    <!-- Add more cells for additional fields -->
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="shopping_customer_web_report" model="ir.actions.report">
+        <field name="name">Print Customer</field>
+        <field name="model">shopping.customer</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">shopping_mall.report_shopping_customer</field>
+        <field name="report_file">shopping_mall.report_shopping_customer</field>
+        <!--        <field name="print_report_name">'Badge - %s' % (object.name).replace('/', '')</field>-->
+        <field name="binding_model_id" ref="shopping_mall.model_shopping_customer"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

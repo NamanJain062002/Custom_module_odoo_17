@@ -1,0 +1,104 @@
+<odoo>
+    <data>
+        <record id="sale_order_inherit_id" model="ir.ui.view">
+            <field name="name">sale.order.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!-- in sale module we made a payment_term_id(payment terms) to readonly-->
+                <field name="payment_term_id" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+            </field>
+        </record>
+        <!--    INHERITING THE SEARCH VIEW -->
+        <record id="sale_order_search_inherit" model="ir.ui.view">
+            <field name="name">sale.order.search.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+            <field name="arch" type="xml">
+                <!-- Modify or extend the search view here -->
+                <xpath expr="//search" position="inside">
+                    <field name="new_data" string="New Data"/>
+                </xpath>
+            </field>
+        </record>
+        <!--    Change the menu item-->
+        <record id="sale.menu_sale_quotations" model="ir.ui.menu">
+            <field name="name">New Quotations</field>
+            <field name="sequence">100</field>
+        </record>
+
+        <!--    EDIT ACTION BY INHERITING IT -->
+        <record id="sale.action_orders" model="ir.actions.act_window">
+            <field name="name">Order(Inherited)</field>
+        </record>
+        <!--    ADD NEW FIELD-->
+        <template id="sale_order_inherit_report" inherit_id="sale.report_saleorder_document">
+
+            <xpath expr="//div[@class='page']/div[@class='row mt-4 mb-2']"
+                   position="after">
+                <div id="test_inherit">
+
+                    <strong>custom name:</strong>
+                    <span t-esc="doc.new_data"/>
+                </div>
+            </xpath>
+        </template>
+
+        <!--    ADDING THE FIELD IN THE DELEVERY PAGE-->
+        <record id="stock_picking_inherit_id" model="ir.ui.view">
+            <field name="name">stock.picking.inherit.id</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="new_data"/>
+                </xpath>
+            </field>
+        </record>
+        <!--Adding button in sale order view-->
+        <record id="sale_order_inherit_id" model="ir.ui.view">
+            <field name="name">sale.order.inherit.id</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='sale_header']/group[@name='partner_details']/field[@name='partner_id']"
+                       position="after">
+                    <field name="new_data"/>
+                </xpath>
+            </field>
+        </record>
+        <!--    Adding a field in notebook in res partner model-->
+        <record id="_res_partner_form_view" model="ir.ui.view">
+            <field name="name">res.partner.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='contact_addresses']"
+                       position="after">
+                    <page string="commission order line">
+                        <group>
+                            <field name="commission"/>
+                            <field name="commission_percent"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+<!-- This code can alter the pre existing field in utm without inheriting that model in py file-->
+
+        <record id="utm_campagim_inherit_id" model="ir.ui.view">
+            <field name="name">utm.campagim.inherit.id</field>
+            <field name="model">utm.campaign</field>
+            <field name="inherit_id" ref="utm.utm_campaign_view_form"/>
+            <field name="arch" type="xml">
+                <field name="title" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
+

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+odoo_practice.access_print_wizard,access_print_wizard,odoo_practice.model_print_wizard,base.group_user,1,1,1,1
+odoo_practice.access_sale_commission,access_sale_commission,odoo_practice.model_sale_commission,base.group_user,1,1,1,1
+odoo_practice.access_sale_admin,access_sale_admin,odoo_practice.model_sale_admin,base.group_user,1,1,1,1

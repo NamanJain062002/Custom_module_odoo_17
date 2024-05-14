@@ -1,0 +1,7 @@
+ <odoo>
+     <menuitem id="hospital_main_menu" name="Hospital"/>
+     <menuitem id="hospital_paitent_submenu" name="Paitent List" parent="hospital.hospital_main_menu" action="hospital.hospital_paitent_action_id"/>
+     <menuitem id="hospital_docter_submenu" name="Docter List" parent="hospital.hospital_main_menu" action="hospital.hospital_docter_action_id"/>
+     <menuitem id="hospital_department_submenu" name="Department List" parent="hospital.hospital_main_menu" action="hospital.hospital_department_action_id"/>
+
+ </odoo>

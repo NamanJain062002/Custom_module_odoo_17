@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vehicle_customer,vehicle.customer,model_vehicle_customer,base.group_user,1,1,1,1
+access_vehicle_premium,vehicle.premium,model_vehicle_premium,base.group_user,1,1,1,1
+access_vehicle_driver,vehicle.driver,model_vehicle_driver,base.group_user,1,1,1,1
+access_vehicle_twowheeler,vehicle.twowheeler,model_vehicle_twowheeler,base.group_user,1,1,1,1
+access_vehicle_fourwheeler,vehicle.fourwheeler,model_vehicle_fourwheeler,base.group_user,1,1,1,1
+access_vehicle_location,vehicle.location,model_vehicle_location,base.group_user,1,1,1,1
+access_demo_demo,demo.demo,model_demo_demo,base.group_user,1,1,1,1
+

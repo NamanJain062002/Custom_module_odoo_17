@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="sale_order_new_inherit_id" model="ir.ui.view">
+            <field name="name">sale.order.inherit.id</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_cancel']" position="after">
+                    <button name="%(odoo_practice.print_wizard_action_id)d" context="{'default_order_id': id}"
+                            type="action" string="print" class="btn-primary"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,48 @@
+<odoo>
+    <record model="ir.ui.view" id="vehicle_driver_form_view_id">
+        <field name="name">vehicle.driver.form.view.id</field>
+        <field name="model">vehicle.driver</field>
+        <field name="arch" type="xml">
+            <form string="Driver Form">
+                <header>
+                    <button name="ReadGroup" type="object" string="Read Group"/>
+                </header>
+                <group>
+                    <field name="name"/>
+                    <field name="photo"/>
+                    <field name="dri_id"/>
+                    <field name="allocated_fourwheeler_ids"/>
+                    <field name="allocated_twowheeler_ids"/>
+                    <field name="age"/>
+                    <field name="address"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="vehicle_driver_tree_view_id">
+        <field name="name">vehicle.driver.tree.view.id</field>
+        <field name="model">vehicle.driver</field>
+        <field name="arch" type="xml">
+            <tree string="Driver Tree">
+                <field name="name"/>
+                <field name="photo"/>
+                <field name="dri_id"/>
+                <field name="allocated_fourwheeler_ids"/>
+                <field name="allocated_twowheeler_ids"/>
+                <field name="age"/>
+                <field name="address"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="vehicle_driver_action_id">
+        <field name="name">Drivers</field>
+        <field name="res_model">vehicle.driver</field>
+        <field name="view_mode">tree,form</field>
+        <!--        <field name="domain">[('age'),'>',23]</field>-->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                There is no records of any Driver
+            </p>
+        </field>
+    </record>
+</odoo>

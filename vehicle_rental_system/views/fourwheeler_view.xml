@@ -1,0 +1,40 @@
+<odoo>
+    <record model="ir.ui.view" id="vehicle_fourwheeler_form_view_id">
+        <field name="name">vehicle.fourwheeler.form.view.id</field>
+        <field name="model">vehicle.fourwheeler</field>
+        <field name="arch" type="xml">
+            <form string="FourWheeler Form">
+                <group>
+                    <field name="name"/>
+                    <field name="is_rented"/>
+                    <field name="fourwheeler_driver_name_id"/>
+                    <field name="locations"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="vehicle_fourwheeler_tree_view_id">
+        <field name="name">vehicle.fourwheeler.tree.view.id</field>
+        <field name="model">vehicle.fourwheeler</field>
+        <field name="arch" type="xml">
+            <tree string="FourWheeler Tree">
+                    <field name="name"/>
+                    <field name="is_rented"/>
+                    <field name="fourwheeler_driver_name_id"/>
+                <field name="locations"/>
+            </tree>
+        </field>
+    </record>
+
+     <record model="ir.actions.act_window" id="vehicle_fourwheeler_action_id">
+        <field name="name">Four Wheelers</field>
+        <field name="res_model">vehicle.fourwheeler</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                There is no records of any Four Wheeler
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,17 @@
+<odoo>
+    <menuitem id="vehicle_main_menu" name="Vechicle Rental System"/>
+    <menuitem id="vehicle_customer_submenu" name="Customers" parent="vehicle_main_menu"
+              action="vehicle_customer_action_id"/>
+     <menuitem id="vehicle_premium_submenu" name="Premium Customers" parent="vehicle_customer_submenu"
+              action="vehicle_pri_customer_submenu"/>
+    <menuitem id="vehicle_driver_submenu" name="Drivers" parent="vehicle_main_menu" action="vehicle_driver_action_id"/>
+<!--        <menuitem id="vehicle_experienced_driver_submenu" name="Experienced Drivers" parent="vehicle_driver_submenu" action="experienced_driver_action_id"/>-->
+
+    <menuitem id="vehicle_twowheeler_submenu" name="TwoWheeler" parent="vehicle_main_menu"
+              action="vehicle_twowheeler_action_id"/>
+    <menuitem id="vehicle_fourwheeler_submenu" name="FourWheeler" parent="vehicle_main_menu"
+              action="vehicle_fourwheeler_action_id"/>
+    <menuitem id="vehicle_location_submenu" name="Locations" parent="vehicle_main_menu"
+              action="vehicle_location_action_id"/>
+
+</odoo>
