@@ -7,6 +7,10 @@
             <field name="arch" type="xml">
 
                 <form string="Shopping Mall Customers">
+                    <header>
+                        <button name="send_email" string="Send Mail" type="object"/>
+                        <button name="print_excel" string="Print Excel" type="object" class="oe_highlight"/>
+                    </header>
                     <field name="status" widget="statusbar"/>
                     <sheet>
 
@@ -56,7 +60,7 @@
             <field name="name">shopping.customer.tree.view.id</field>
             <field name="model">shopping.customer</field>
             <field name="arch" type="xml">
-                <tree string="Shopping Mall Customers">
+                <tree string="Shopping Mall Customers" decoration-info="amount_paid==True" decoration-danger="amount_paid==False">
                     <field name="name"/>
                     <field name="cus_id"/>
                     <field name="shopping_date"/>

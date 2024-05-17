@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="mail_template_shopping_customer_id" model="mail.template">
+            <field name="name">Welcome Customer</field>
+            <field name="model_id" ref="model_shopping_customer"/>
+            <field name="subject">{{object.name}}: Information</field>
+            <field name="email_to">namanjain112002@gmail.com</field>
+            <field name="report_template_ids" eval="[(4, ref('shopping_mall.shopping_customer_web_report'))]"/>
+            <field name="body_html" type="html">
+                <p>
+                    Hello Customer <t t-esc="object.name" />
+                </p>
+            </field>
+
+        </record>
+    </data>
+</odoo>

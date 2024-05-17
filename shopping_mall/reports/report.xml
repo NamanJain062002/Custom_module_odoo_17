@@ -3,51 +3,52 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
-                    <div class="page">
-                        <h2>Customer Report</h2>
-                        <p>
-                            <span t-field="o.name"/>
-                            <span t-field="o.shopping_date"/>
-                        </p>
-                        <h3>CUSTOMER ID #
-                            <span t-field="o.cus_id"/>
-                        </h3>
-                        <table class="table table-condensed">
-                            <thead>
-                                <tr>
-                                    <th>billing_counter</th>
-                                    <th>supper_customer</th>
-                                    <th>bill_amount</th>
-                                    <th>gst</th>
-                                    <th>total_amount</th>
-                                    <!-- Add more column headers as needed -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Loop through data and display rows -->
-                                <tr>
-                                    <td>
-                                        <span t-field="o.billing_counter"/>
-                                    </td>
-                                    <td>
-                                        <span t-esc="o.supper_customer and 'Yes' or 'No'"/>
-                                    </td>
+                    <p>Hello customer</p>
+<!--                    <div class="page">-->
+<!--                        <h2>Customer Report</h2>-->
+<!--                        <p>-->
+<!--                            <span t-field="o.name"/>-->
+<!--                            <span t-field="o.shopping_date"/>-->
+<!--                        </p>-->
+<!--                        <h3>CUSTOMER ID #-->
+<!--                            <span t-field="o.cus_id"/>-->
+<!--                        </h3>-->
+<!--                        <table class="table table-condensed">-->
+<!--                            <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>billing_counter</th>-->
+<!--                                    <th>supper_customer</th>-->
+<!--                                    <th>bill_amount</th>-->
+<!--                                    <th>gst</th>-->
+<!--                                    <th>total_amount</th>-->
+<!--                                    &lt;!&ndash; Add more column headers as needed &ndash;&gt;-->
+<!--                                </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                                &lt;!&ndash; Loop through data and display rows &ndash;&gt;-->
+<!--                                <tr>-->
+<!--                                    <td>-->
+<!--                                        <span t-field="o.billing_counter"/>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <span t-esc="o.supper_customer and 'Yes' or 'No'"/>-->
+<!--                                    </td>-->
 
-                                    <td>
-                                        <span t-field="o.bill_amount"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="o.gst"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="o.total_amount"/>
-                                    </td>
-                                    <!-- Add more cells for additional fields -->
-                                </tr>
+<!--                                    <td>-->
+<!--                                        <span t-field="o.bill_amount"/>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <span t-field="o.gst"/>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <span t-field="o.total_amount"/>-->
+<!--                                    </td>-->
+<!--                                    &lt;!&ndash; Add more cells for additional fields &ndash;&gt;-->
+<!--                                </tr>-->
 
-                            </tbody>
-                        </table>
-                    </div>
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
                 </t>
             </t>
         </t>

@@ -1,5 +1,4 @@
 from odoo import fields, models, api
-
 from odoo.exceptions import ValidationError
 
 
@@ -73,3 +72,42 @@ class ResPartner(models.Model):
             name = rec.name+rec.email
             result.append((rec.id, name))
         return result
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    def print_report(self):
+        return self.env.ref('odoo_practice.res_partner_customer_report_action').report_action(self)
+
+    def _get_customer_information(self):
+        # Implement the logic to retrieve customer information here
+        return {'name': self.function}
+
+    def send_email(self):
+        self.ensure_one()
+        # self.order_line._validate_analytic_distribution()
+        lang = self.env.context.get('lang')
+        mail_template = self.env.ref('odoo_practice.mail_template_res_partner_id')
+        if mail_template and mail_template.lang:
+            lang = mail_template._render_lang(self.ids)[self.id]
+        ctx = {
+            'default_model': 'sale.order',
+            'default_res_ids': self.ids,
+            'default_template_id': mail_template.id if mail_template else None,
+            'default_composition_mode': 'comment',
+            'mark_so_as_sent': True,
+            'default_email_layout_xmlid': 'mail.mail_notification_layout_with_responsible_signature',
+            'proforma': self.env.context.get('proforma', False),
+            'force_email': True,
+
+        }
+        return {
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(False, 'form')],
+            'view_id': False,
+            'target': 'new',
+            'context': ctx,
+        }
+

@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="menu_custom_inherited" model="ir.ui.menu">
+            <field name="name">Commission</field>
+            <field name="sequence" eval="100"/>
+            <field name="parent_id" ref="sale.sale_menu_root"/>
+        </record>
+
+        <!--Adding submenu in prebuild menu Reporting-->
+        <menuitem id="sales_submenu_xls_id" name="Print Sale Order Excel" parent="sale.menu_sale_report"
+                  action="print_sale_order_wizard_excel_id" sequence="1"/>
+    </data>
+</odoo>

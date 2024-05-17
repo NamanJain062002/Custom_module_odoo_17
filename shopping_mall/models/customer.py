@@ -1,4 +1,11 @@
+import io
+
+import xlsxwriter
+
 from odoo import models, fields, api, _
+import xlwt
+import base64
+from io import BytesIO
 
 
 class customer(models.Model):
@@ -11,7 +18,7 @@ class customer(models.Model):
     billing_counter = fields.Selection(
         [('counter 1', 'Counter 1'), ('counter 2', 'Counter 2'), ('counter 3', 'Counter 3'), ('counter 4', 'Counter 4'),
          ('counter 5', 'Counter 5'), ], string="Billing Counter")
-    amount_paid = fields.Boolean(string="Amount Paid")
+    amount_paid = fields.Boolean(string="Amount Paid", default=False)
     supper_customer = fields.Boolean(string=" Is Super Customer")
     items = fields.One2many(string="Items", comodel_name='shopping.item', inverse_name='item_name')
     bill_amount = fields.Float(string="Bill Amount", default=0, compute="calc_bill_amount")
@@ -21,6 +28,112 @@ class customer(models.Model):
 
 
     super_customer_count = fields.Integer(compute="calc_count_super_costomer")
+
+
+    def print_excel(self):
+        # fileName = self.name
+        # workbook = xlwt.Workbook(encoding='utf-8')
+        # sheet1 = workbook.add_sheet('customer', cell_overwrite_ok=True)
+        # format1 = xlwt.easyxf()
+        output = io.BytesIO()
+        workbook = xlsxwriter.Workbook(output)
+        sheet = workbook.add_worksheet('Transactions')
+
+        bold_format = workbook.add_format(
+            {'bold': True, 'align': 'center', 'font_size': 10, 'valign': 'vcenter', 'bg_color': '#f2eee4',
+             'border': True})
+        normal_format = workbook.add_format({'text_wrap': True, 'align': 'center', 'valign': 'top'})
+        date_format = workbook.add_format({'num_format': 'dd/mm/yy', 'align': 'center'})
+        sheet.set_column('A:G', 15)  # Adjust the width as needed
+        # Set row height
+        sheet.set_default_row(30)  # Adjust the height as needed
+        row = 1
+        col = 0
+
+        # Write headers with bold format
+        sheet.write('A1', 'Customer Name', bold_format)
+        sheet.write('B1', 'Customer ID', bold_format)
+        sheet.write('C1', 'Shopping Date', bold_format)
+        sheet.write('D1', 'Billing Counter', bold_format)
+        sheet.write('E1', 'Bill Amount', bold_format)
+        sheet.write('F1', 'GST', bold_format)
+        sheet.write('G1', 'Total Amount', bold_format)
+
+        sheet.write(row, col, self.name, normal_format)
+        sheet.write(row, col + 1, self.cus_id, date_format)
+        sheet.write(row, col + 2, self.shopping_date, normal_format)
+        sheet.write(row, col + 3, self.billing_counter, normal_format)
+        sheet.write(row, col + 4, self.bill_amount, normal_format)
+        sheet.write(row, col + 5, self.gst, normal_format)
+        sheet.write(row, col + 6, self.total_amount, normal_format)
+
+        workbook.close()
+        output.seek(0)
+
+        # Encode the file to base64
+        excel_file = base64.b64encode(output.read())
+        output.close()
+
+        # Create an attachment
+        attachment = self.env['ir.attachment'].create({
+            'name': f'{self.name}_report.xlsx',
+            'type': 'binary',
+            'datas': excel_file,
+            'res_model': 'bank.transaction',
+            'res_id': self.id,
+            'mimetype': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        })
+
+        return {
+            'type': 'ir.actions.act_url',
+            'url': f'/web/content/{attachment.id}?download=true',
+            'target': 'self',
+        }
+
+    def _get_customer_information(self):
+        # Implement the logic to retrieve customer information here
+        return {'name': self.name}
+
+
+    def send_email(self):
+        # template_id = self.env.ref('school.mail_template_blog')  # Replace 'your_module.email_template_id' with the actual ID of your email template
+        # template_id.send_mail(self.id, force_send=True)
+        self.ensure_one()
+        # self.order_line._validate_analytic_distribution()
+        lang = self.env.context.get('lang')
+        mail_template = self.env.ref('shopping_mall.mail_template_shopping_customer_id')
+        if mail_template and mail_template.lang:
+            lang = mail_template._render_lang(self.ids)[self.id]
+        ctx = {
+            'default_model': 'sale.order',
+            'default_res_ids': self.ids,
+            'default_template_id': mail_template.id if mail_template else None,
+            'default_composition_mode': 'comment',
+            'mark_so_as_sent': True,
+            'default_email_layout_xmlid': 'mail.mail_notification_layout_with_responsible_signature',
+            'proforma': self.env.context.get('proforma', False),
+            'force_email': True,
+
+        }
+        return {
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(False, 'form')],
+            'view_id': False,
+            'target': 'new',
+            'context': ctx,
+        }
+
+
+
+    @api.onchange('amount_paid')
+    def change_status_bar(self):
+        for rec in self:
+            if rec.amount_paid:
+                rec.status = 'paid'
+            else:
+                rec.status = 'unpaid'
 
 
     @api.depends('items.price')

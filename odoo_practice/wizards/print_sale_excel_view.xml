@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+       <data>
+        <record id="print_sale_excel_id" model="ir.ui.view">
+            <field name="name">print.sale.excel.id</field>
+            <field name="model">sale.excel</field>
+            <field name="arch" type="xml">
+                <form string="Print Sale Order Excel">
+                    <sheet>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <footer>
+                            <button name="submit" string="Print" type="object" class="btn-primary"/>
+                            <button string="Cancel" special="cancel" class="btn-primary"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="print_sale_order_wizard_excel_id" model="ir.actions.act_window">
+            <field name="name">Print Sale Order Excel</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.excel</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="print_sale_excel_id"/>
+            <field name="target">new</field>
+        </record>
+
+
+    </data>
+</odoo>

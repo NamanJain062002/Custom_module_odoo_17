@@ -1,0 +1,30 @@
+<odoo>
+    <record id="_res_partner_form_view_id" model="ir.ui.view">
+        <field name="name">res.partner.view.id</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet"
+                   position="before">
+                <header>
+                    <button name="send_email" string="Send Mail" type="object"/>
+                    <button name="print_report" string="Print Customer PDF" type="object" class="oe_highlight"/>
+                </header>
+            </xpath>
+        </field>
+    </record>
+
+<!--    <record id="_res_partner_form_view_id2" model="ir.ui.view">-->
+<!--        <field name="name">res.partner.view.id2</field>-->
+<!--        <field name="model">res.partner</field>-->
+<!--        <field name="inherit_id" ref="base.view_partner_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//header"-->
+<!--                   position="inside">-->
+<!--                    <button name="print_report" string="Print Customer PDF" type="object" class="oe_highlight"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+</odoo>
