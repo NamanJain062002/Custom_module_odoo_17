@@ -17,7 +17,5 @@ class item(models.Model):
             vals['item_id'] = self.env['ir.sequence'].next_by_code('item.sequence') or _('New')
         return super(item, self).create(vals)
 
-    #
-
 
 

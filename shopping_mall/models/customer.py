@@ -1,4 +1,6 @@
 import io
+from calendar import month
+from datetime import date, datetime
 
 import xlsxwriter
 
@@ -13,6 +15,7 @@ class customer(models.Model):
     _description = 'information about customers'
 
     name = fields.Char(string="Name", required=1)
+    dob = fields.Date(string="Date Of Birth")
     cus_id = fields.Char(string="Customer ID", readonly=1)
     shopping_date = fields.Date(string="Shopping Date")
     billing_counter = fields.Selection(
@@ -25,9 +28,37 @@ class customer(models.Model):
     gst = fields.Float(string="GST", default=0, readonly=1, compute="calc_gst")
     total_amount = fields.Float(string="Total Amount", compute="_calc_total_amount")
     status = fields.Selection([('unpaid', 'Unpaid'), ('paid', 'Paid')], string="Status", readonly="1", default="unpaid")
-
-
+    dob_day = fields.Integer(string='Day of Birth', compute='_compute_dob_day', store=True)
+    dob_month = fields.Integer(string='Month of Birth', compute='_compute_dob_month', store=True)
     super_customer_count = fields.Integer(compute="calc_count_super_costomer")
+    @api.depends('dob')
+    def _compute_dob_day(self):
+        # This code is for calculating date from dob which we use in cron method temp_method
+        for rec in self:
+            if rec.dob:
+                rec.dob_day = rec.dob.day
+            else:
+                rec.dob_day = False
+
+    @api.depends('dob')
+    def _compute_dob_month(self):
+        # This code is for calculating month from dob which we use in cron method temp_method
+        for rec in self:
+            if rec.dob:
+                rec.dob_month = rec.dob.month
+            else:
+                rec.dob_month = False
+
+    @api.model
+    def temp_method(self):
+        today_time = datetime.today()
+        customer_with_birthday = self.search([('dob_day', '=', today_time.day), ('dob_month', '=', today_time.month)])
+        for rec in customer_with_birthday:
+            print("Happy birthday ", rec.name)
+
+    def chk(self):
+        val = self.env.ref('shopping_mall.shopping_customer_form_view_id')
+        print(val.name)
 
 
     def print_excel(self):

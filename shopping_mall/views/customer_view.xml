@@ -10,6 +10,7 @@
                     <header>
                         <button name="send_email" string="Send Mail" type="object"/>
                         <button name="print_excel" string="Print Excel" type="object" class="oe_highlight"/>
+                        <button name="chk" string="Check" type="object"/>
                     </header>
                     <field name="status" widget="statusbar"/>
                     <sheet>
@@ -25,7 +26,8 @@
                         <group>
 
                             <group>
-                                <field name="name"/>
+                                <field name="name" widget="char"/>
+                                <field name="dob"/>
                                 <field name="cus_id"/>
                                 <field name="shopping_date"/>
                             </group>
@@ -42,7 +44,7 @@
                         </group>
                         <notebook>
                             <page string="Items">
-                                <field name="items" widget="one2many_list">
+                                <field name="items" widget="one2many">
                                     <tree editable="bottom">
                                         <field name="item_id"/>
                                         <field name="item_img"/>
@@ -62,12 +64,13 @@
             <field name="arch" type="xml">
                 <tree string="Shopping Mall Customers" decoration-info="amount_paid==True" decoration-danger="amount_paid==False">
                     <field name="name"/>
+                    <field name="dob"/>
                     <field name="cus_id"/>
                     <field name="shopping_date"/>
                     <field name="billing_counter"/>
                     <field name="amount_paid"/>
                     <field name="supper_customer"/>
-                    <field name="items"/>
+                    <field name="items" widget="one2many"/>
                     <field name="bill_amount"/>
                     <field name="gst"/>
                     <field name="total_amount"/>

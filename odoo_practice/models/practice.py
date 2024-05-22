@@ -75,6 +75,25 @@ class ResPartner(models.Model):
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
+    dob = fields.Date(string="DOB")
+
+    @api.model
+    def send_birthday_mail(self):
+        today = fields.Date.today()
+        today_month_day = today.strftime('%m-%d')
+        all_records = self.search([])
+        for rec in all_records:
+            if rec.dob and rec.dob.strftime('%m-%d') == today_month_day:
+                email_values = {
+                    'email_to': rec.email,
+                    'subject': f"Happy Birthday {rec.name}"
+                }
+                mail_template = self.env.ref('odoo_practice.birthday_email_template')
+                mail_template.send_mail(rec.id, email_values=email_values, force_send=True)
+        # mail_template = self.env.ref('odoo_practice.mail_template_res_partner_id')
+        # mail_template.send_mail(
+        #     force_send=True  # Set to True to send the email immediately
+        # )
 
     def print_report(self):
         return self.env.ref('odoo_practice.res_partner_customer_report_action').report_action(self)

@@ -16,8 +16,9 @@
         'views/res_partner_view.xml',
         'data/email_template_view.xml',
         'reports/report.xml',
-        'wizards/print_sale_excel_view.xml'
-
+        'wizards/print_sale_excel_view.xml',
+        'views/res_partner_inherit_view.xml',
+        'data/birthday_template.xml'
     ],
 
     'installable': True,

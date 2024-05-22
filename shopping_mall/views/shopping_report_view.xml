@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+        <record id="view_shopping_report_graph" model="ir.ui.view">
+            <field name="name">shopping.report.graph.views</field>
+            <field name="model">shopping.report</field>
+            <field name="arch" type="xml">
+                <graph string="Report">
+
+                    <field name="signed_by"/>
+                    <field name="signed_on"/>
+                    <field name="origin"/>
+                    <field name="reference"/>
+
+
+                </graph>
+            </field>
+        </record>
+        <record id="view_shopping_report_pivot" model="ir.ui.view">
+            <field name="name">shopping.report.pivot.views</field>
+            <field name="model">shopping.report</field>
+            <field name="arch" type="xml">
+                <pivot string="customer">
+
+                   <field name="signed_by"/>
+                    <field name="signed_on"/>
+                    <field name="origin"/>
+                    <field name="reference"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="shopping_report_action_id" model="ir.actions.act_window">
+            <field name="name">Report LIST</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shopping.report</field>
+            <field name="view_mode">graph,pivot</field>
+        </record>
+
+<!--        to add sale graph by sql queries-->
+
+         <menuitem id="sale_order_shopping_report_inherit_id2"
+              name="Report"
+              parent="sale.sale_menu_root"/>
+
+         <menuitem id="sale_order_shopping_report_inherit_submenu_id"
+              name="Sale Order Report"
+              parent="sale_order_shopping_report_inherit_id2"
+              action="shopping_report_action_id"/>
+    </data>
+</odoo>

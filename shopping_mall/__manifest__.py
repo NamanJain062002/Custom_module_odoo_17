@@ -3,7 +3,7 @@
     'version': '1.0',
     'summary': 'Mange the buisness activity in mall',
     'author': 'Naman Jain',
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail', 'sale', 'sale_management'],
     'data': [
         'security/ir.model.access.csv',
         'wizards/review_view.xml',
@@ -15,7 +15,9 @@
         'data/sequence_view.xml',
         'reports/report.xml',
         'views/menu_view.xml',
-        'data/email_template.xml'],
+        'data/email_template.xml'
+        # 'views/shopping_report_view.xml'
+    ],
 
     'installable': True,
     'application': True,

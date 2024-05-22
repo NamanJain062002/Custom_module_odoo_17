@@ -13,4 +13,9 @@
               action="shopping_paidbill_action_id"/>
     <menuitem id="shopping_unpaidbill_submenu" name="Unpaid Bills" parent="shopping_bill_submenu"
               action="shopping_unpaidbill_action_id"/>
+
+
+
+
+
 </odoo>

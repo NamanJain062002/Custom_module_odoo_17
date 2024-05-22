@@ -9,6 +9,8 @@
                     <field name="is_rented"/>
                     <field name="fourwheeler_driver_name_id"/>
                     <field name="locations"/>
+                    <field name="vechile_rent"/>
+                    <field name="driver_charge"/>
                 </group>
             </form>
         </field>
@@ -23,6 +25,8 @@
                     <field name="is_rented"/>
                     <field name="fourwheeler_driver_name_id"/>
                 <field name="locations"/>
+                 <field name="vechile_rent"/>
+                    <field name="driver_charge"/>
             </tree>
         </field>
     </record>
