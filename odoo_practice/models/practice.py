@@ -1,3 +1,10 @@
+import base64
+from datetime import datetime, timedelta
+import io
+
+import dateutil.utils
+import xlsxwriter
+
 from odoo import fields, models, api
 from odoo.exceptions import ValidationError
 
@@ -15,6 +22,80 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
     new_data = fields.Char(string="New Data")
     commission = fields.Float(string="Commission", compute="calc_commission")
+
+
+    def print_montly_orders(self):
+        print('1')
+        admin = self.env.user.name
+        today_date = datetime.today()
+        last_month_date = today_date - timedelta(days=today_date.day)
+
+        last_month_orders = self.search([('user_id', '=', admin), ('date_order', '>=', last_month_date), ('date_order', '<=', today_date)])
+
+        output = io.BytesIO()
+        workbook = xlsxwriter.Workbook(output)
+        sheet = workbook.add_worksheet('Orders')
+
+        bold_format = workbook.add_format(
+            {'bold': True, 'align': 'center', 'font_size': 12, 'valign': 'center', 'bg_color': '#00008B',
+             'color': '#FFFFFF',
+             'border': True})
+        normal_format = workbook.add_format(
+            {'text_wrap': True, 'valign': 'center', 'align': 'center', 'bg_color': '#ADD8E6', 'border': True,
+             'font_size': 10})
+        number_format = workbook.add_format(
+            {'text_wrap': True, 'valign': 'center', 'align': 'right', 'bg_color': '#ADD8E6', 'border': True,
+             'font_size': 10})
+        date_format = workbook.add_format(
+            {'num_format': 'dd/mm/yy', 'align': 'center', 'valign': 'center', 'bg_color': '#ADD8E6', 'border': True,
+             'font_size': 10})
+        dollar_format = workbook.add_format(
+            {'num_format': '$#,##0.00', 'text_wrap': True, 'valign': 'center', 'align': 'right',
+             'bg_color': '#ADD8E6', 'border': True, 'font_size': 10})
+        sheet.set_column('A:G', 18)  # Adjust the width as needed
+        sheet.set_default_row(30)  # Adjust the height as needed
+        row = 1
+        col = 0
+        print('2')
+        # Write headers with bold format
+        sheet.write('A1', 'Number', bold_format)
+        sheet.write('B1', 'Date', bold_format)
+        sheet.write('C1', 'Customer', bold_format)
+        sheet.write('D1', 'Sale Person', bold_format)
+        sheet.write('E1', 'Status', bold_format)
+        sheet.write('F1', 'Total', bold_format)
+
+        for rec in last_month_orders:
+            print('3')
+            sheet.write(row, col, rec.name or '', number_format)
+            sheet.write(row, col + 1, rec.date_order.strftime('%Y-%m-%d') if rec.date_order else '', date_format)
+            sheet.write(row, col + 2, rec.partner_id.name or '', normal_format)
+            sheet.write(row, col + 3, rec.user_id.name or '', normal_format)
+            sheet.write(row, col + 4, rec.invoice_status or '', normal_format)
+            sheet.write(row, col + 5, rec.amount_total or 0.0, dollar_format)
+            row += 1
+
+        workbook.close()
+        output.seek(0)
+        excel_file = base64.b64encode(output.read())
+        # Create an attachment
+        attachment = self.env['ir.attachment'].create({
+            'name': f'Sale_Order_report.xlsx',
+            'type': 'binary',
+            'datas': excel_file,
+            'res_model': 'sale.order',
+            'res_id': self.id,
+            'mimetype': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        })
+
+        # Return the action to open/download the attachment
+        print('4')
+        return {
+            'type': 'ir.actions.act_url',
+            'url': '/web/content/%s?download=true' % attachment.id,
+            'target': 'self'
+        }
+
 
     @api.model
     def create(self, vals):
@@ -130,3 +211,14 @@ class ResPartner(models.Model):
             'context': ctx,
         }
 
+
+class AccountPaymentTerm(models.Model):
+    _inherit = 'account.payment.term'
+
+    def name_get(self):
+        print("HIIIII")
+        res = []
+        for rec in self:
+            name = rec.name + " NAMAN"
+            res.append((rec.id, name))
+        return res

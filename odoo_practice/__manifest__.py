@@ -3,7 +3,7 @@
     'version': '1.0',
     'summary': 'Practice purpose',
     'author': 'Naman Jain',
-    'depends': ['base', 'sale', 'sale_management', 'stock', 'mail'],
+    'depends': ['base', 'sale', 'sale_management', 'stock', 'mail', 'account'],
     'data': [
         'security/ir.model.access.csv',
         'views/practice_view.xml',

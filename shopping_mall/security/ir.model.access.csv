@@ -1,5 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_shopping_customer,shopping.customer,model_shopping_customer,base.group_user,1,1,1,1
+access_shopping_customer,shopping.customer,model_shopping_customer,base.group_user,0,0,0,0
+access_shopping_owner_customer,shopping.customer,model_shopping_customer,shopping_mall.group_shopping_mall_owner_record_access,1,1,1,1
+access_shopping_employee_customer,shopping.customer,model_shopping_customer,shopping_mall.group_shopping_mall_employee_record_access,1,1,0,0
+access_shopping_customer_customer,shopping.customer,model_shopping_customer,shopping_mall.group_shopping_mall_employee_record_access,0,0,0,0
+
+
+
 access_shopping_item,shopping.item,model_shopping_item,base.group_user,1,1,1,1
 access_shopping_review,shopping.review,model_shopping_review,base.group_user,1,1,1,1
 access_shopping_reviewrecord,shopping.reviewrecord,model_shopping_reviewrecord,base.group_user,1,1,1,1

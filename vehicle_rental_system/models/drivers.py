@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
+
 class driver(models.Model):
     _name = "vehicle.driver"
     _description = "Information about drivers"
@@ -14,6 +15,17 @@ class driver(models.Model):
     age = fields.Integer(string="Age")
     address = fields.Char(string="Address")
     _sql_constraints = [('unique_id', 'UNIQUE(dri_id)', 'driver id must be unique')]
+
+
+    # name_get ORM method
+
+    def name_get(self):
+        result = []
+        for record in self:
+            name = f"[{record.dri_id}] {record.name}" if record.dri_id else record.name
+
+            result.append((record.id, name))
+        return result
 
     @api.model
     def create(self, vals):
@@ -57,12 +69,5 @@ class driver(models.Model):
         print("read group called>>>")
         order_totals = self.read_group([('age', '>', 20)], ['name', 'dri_id'], ['age'])
         print(order_totals)
-
-    def name_get(self):
-        result = []
-        for rec in self:
-            record = rec.name+' '+rec.dri_id
-            result.append((rec.id, record))
-        return result
 
 

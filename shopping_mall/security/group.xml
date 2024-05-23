@@ -1,0 +1,20 @@
+<odoo>
+    <record id="model_category_shopping_mall" model="ir.module.category">
+        <field name="name">Shopping Mall Access</field>
+        <field name="description">access rights of groups in shopping mall</field>
+        <field name="sequence">1</field>
+    </record>
+    <record id="group_shopping_mall_owner_record_access" model="res.groups">
+        <field name="name">Owner access</field>
+        <field name="category_id" ref="shopping_mall.model_category_shopping_mall"/>
+    </record>
+    <record id="group_shopping_mall_employee_record_access" model="res.groups">
+        <field name="name">Employee access</field>
+        <field name="category_id" ref="shopping_mall.model_category_shopping_mall"/>
+    </record>
+    <record id="group_shopping_mall_customer_record_access" model="res.groups">
+        <field name="name">Customer access</field>
+        <field name="category_id" ref="shopping_mall.model_category_shopping_mall"/>
+    </record>
+
+</odoo>

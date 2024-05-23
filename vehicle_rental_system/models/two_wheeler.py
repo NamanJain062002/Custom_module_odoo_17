@@ -9,7 +9,7 @@ class twoWheeler(models.Model):
     name = fields.Char(string="Vehicle Name")
     is_rented = fields.Boolean(string="Available", default=True)
     driver_name_id = fields.Many2one('vehicle.driver', string="Allocated Driver")
-    locations = fields.Many2many('vehicle.location',string="Locations available")
+    locations = fields.Many2many('vehicle.location', string="Locations available")
 
 
     def check_orm(self):
