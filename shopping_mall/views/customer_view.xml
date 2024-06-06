@@ -10,7 +10,6 @@
                     <header>
                         <button name="send_email" string="Send Mail" type="object"/>
                         <button name="print_excel" string="Print Excel" type="object" class="oe_highlight"/>
-                        <button name="chk" string="Check" type="object"/>
                     </header>
                     <field name="status" widget="statusbar"/>
                     <sheet>
@@ -28,6 +27,7 @@
                             <group>
                                 <field name="name" widget="char"/>
                                 <field name="dob"/>
+                                 <field name="email"/>
                                 <field name="cus_id"/>
                                 <field name="shopping_date"/>
                             </group>
@@ -42,18 +42,14 @@
                                 <field name="total_amount"/>
                             </group>
                         </group>
-                        <notebook>
-                            <page string="Items">
-                                <field name="items" widget="one2many">
-                                    <tree editable="bottom">
-                                        <field name="item_id"/>
-                                        <field name="item_img"/>
-                                        <field name="price"/>
-                                    </tree>
-                                </field>
-                            </page>
-                        </notebook>
+                       <group>
+                           <field name="items" widget="many2many_tags"/>
+                       </group>
                     </sheet>
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -65,12 +61,13 @@
                 <tree string="Shopping Mall Customers" decoration-info="amount_paid==True" decoration-danger="amount_paid==False">
                     <field name="name"/>
                     <field name="dob"/>
+                    <field name="email"/>
                     <field name="cus_id"/>
                     <field name="shopping_date"/>
                     <field name="billing_counter"/>
                     <field name="amount_paid"/>
                     <field name="supper_customer"/>
-                    <field name="items" widget="one2many"/>
+                    <field name="items" widget="many2many_tags"/>
                     <field name="bill_amount"/>
                     <field name="gst"/>
                     <field name="total_amount"/>
@@ -85,6 +82,7 @@
                 <search position="inside">
                     <field name="name"/>
                     <field name="cus_id"/>
+                    <field name="email"/>
                     <field name="shopping_date"/>
                     <field name="billing_counter"/>
                     <field name="supper_customer"/>
@@ -92,7 +90,7 @@
                     <field name="bill_amount"/>
                     <field name="gst"/>
                     <field name="total_amount"/>
-                      <filter string="Supper Customer" name="super_customer" domain="[('supper_customer', '=', True)]"/>
+                      <filter string="Super Customer" name="super_customer" domain="[('supper_customer', '=', True)]"/>
                     <!--                    <searchpanel>-->
                     <!--                        <field name="supper_customer"/>-->
                     <!--                    </searchpanel>-->

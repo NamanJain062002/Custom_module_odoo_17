@@ -1,7 +1,7 @@
 from odoo import fields, models, api, _
 
 
-class review(models.Model):
+class review(models.TransientModel):
     _name = 'shopping.review'
     _description = 'Review of products'
 
@@ -10,11 +10,12 @@ class review(models.Model):
 
     def submit(self):
         review_model = self.env['shopping.reviewrecord']
-        # item_model = self.env['shopping.item']
+        get_item_id = self.env['shopping.item'].browse(self.env.context.get('active_id'))
+
 
         review_model.create({
-            'item_name': 'Item Name',
-            'item_id': 'Item ID',
+            'item_name': get_item_id.item_name,
+            'item_id': get_item_id.item_id,
             'rating': self.stars,
             'reviews': self.review
         })

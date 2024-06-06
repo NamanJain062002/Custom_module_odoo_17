@@ -6,8 +6,8 @@
             <form string="Location Form">
                 <group>
                     <field name="location_name"/>
-                    <field name="two_wheelers"/>
-                    <field name="four_wheelers"/>
+                    <field name="two_wheelers" widget="many2many_tags"/>
+                    <field name="four_wheelers" widget="many2many_tags"/>
                 </group>
             </form>
         </field>
@@ -19,8 +19,8 @@
         <field name="arch" type="xml">
             <tree string="TwoWheelocation">
                 <field name="location_name"/>
-                <field name="two_wheelers"/>
-                <field name="four_wheelers"/>
+                <field name="two_wheelers" widget="many2many_tags"/>
+                <field name="four_wheelers" widget="many2many_tags"/>
 
             </tree>
         </field>

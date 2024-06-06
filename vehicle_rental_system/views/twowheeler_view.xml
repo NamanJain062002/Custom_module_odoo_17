@@ -9,7 +9,7 @@
                     <field name="name"/>
                     <field name="is_rented"/>
                     <field name="driver_name_id"/>
-                    <field name="locations"/>
+                    <field name="locations" widget="many2many_tags"/>
                 </group>
             </form>
         </field>
@@ -23,7 +23,7 @@
                     <field name="name"/>
                     <field name="is_rented"/>
                     <field name="driver_name_id"/>
-                <field name="locations" widget="manytomany_get"/>
+                <field name="locations" widget="many2many_tags"/>
 
             </tree>
         </field>

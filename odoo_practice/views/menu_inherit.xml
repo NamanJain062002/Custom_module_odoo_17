@@ -15,7 +15,5 @@
         <menuitem id="sub_menu_custom_2" name="Commission Order Line" parent="menu_custom_inherited"
                   action="action_commission_sale_order_id"/>
 
-
-
     </data>
 </odoo>

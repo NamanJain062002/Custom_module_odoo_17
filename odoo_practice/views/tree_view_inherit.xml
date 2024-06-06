@@ -1,0 +1,13 @@
+<odoo>
+    <record id="tree_view_inherit_id" model="ir.ui.view">
+        <field name="name">tree.view.inherit.id</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <!-- Modify or extend the search view here -->
+                <header>
+                    <button name="demo" string="Demo" type="object"/>
+                </header>
+        </field>
+    </record>
+</odoo>

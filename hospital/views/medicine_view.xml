@@ -1,0 +1,37 @@
+<odoo>
+    <record model="ir.ui.view" id="hospital_medicine_form_view_id">
+        <field name="name">hospital.medicine.form.view.id</field>
+        <field name="model">hospital.medicine</field>
+        <field name="arch" type="xml">
+            <form string="medicine Form">
+
+                <group>
+                    <field name="medicine_name"/>
+                    <field name="stock_available"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hospital_medicine_tree_view_id">
+        <field name="name">hospital.medicine.tree.view.id</field>
+        <field name="model">hospital.medicine</field>
+        <field name="arch" type="xml">
+            <tree string="Hospital Tree">
+               <field name="medicine_name"/>
+                    <field name="stock_available"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hospital_medicine_action_id">
+        <field name="name">medicine</field>
+        <field name="res_model">hospital.medicine</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                There is no records of any medicine
+            </p>
+        </field>
+    </record>
+</odoo>

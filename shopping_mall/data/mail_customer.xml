@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--Template to send demo mail template for the customer-->
+        <record id="template_shopping_customer_mail_id" model="mail.template">
+            <field name="name">Welcome Mail Customert</field>
+            <field name="model_id" ref="shopping_mall.model_shopping_customer"/>
+<!--            <field name="email_from">${(user.email or '').strip()}</field>-->
+            <field name="email_to">{{object.email}}</field>
+            <field name="subject">Thank You Mail</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <div style="justify-content: center;padding-left: 35px;text-decoration: none; border-radius: 5px; font-size:13px;width:40%">
+                        <div>
+                            Hello <t t-out="object.name"/>,<br></br>
+                            Thank you for choosing us,
+                            Happy shopping.
+                        </div>
+                        <br/>
+                        Your Fathfully,
+                        <br/>
+                        <t t-out="object.name"/>
+                    </div>
+                    <br/>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+<!--    <data>-->
+<!--        &lt;!&ndash; Email Template &ndash;&gt;-->
+<!--        <record id="template_shopping_customer_mail_id" model="mail.template">-->
+<!--            <field name="name">Welcome Email Template</field>-->
+<!--            <field name="model_id" ref="model_shopping_customer"/>-->
+<!--            <field name="subject">Thank You For Shopping {{object.name}}</field>-->
+<!--            <field name="email_from">admin@example.com</field>-->
+<!--            <field name="body_html">-->
+<!--                <div>-->
+<!--                    <p>Hello <t t-out="user.name"/>,-->
+<!--                    </p>-->
+<!--                    <p>Welcome to our store!</p>-->
+<!--                    <p>Thank you for choosing us.</p>-->
+<!--                </div>-->
+<!--            </field>-->
+<!--            <field name="lang">en_US</field>-->
+<!--        </record>-->
+<!--    </data>-->
+<!--</odoo>-->

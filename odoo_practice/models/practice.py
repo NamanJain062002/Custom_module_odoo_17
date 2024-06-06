@@ -24,6 +24,10 @@ class SaleOrder(models.Model):
     commission = fields.Float(string="Commission", compute="calc_commission")
 
 
+    def demo(self):
+        pass
+
+
     def print_montly_orders(self):
         print('1')
         admin = self.env.user.name

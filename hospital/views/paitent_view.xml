@@ -12,7 +12,19 @@
                     <field name="mobile"/>
                     <field name="assigned_doc" widget="many2many_tags"/>
                     <field name="gender"/>
+                    <field name="payment_done"/>
                 </group>
+                <notebook>
+                    <page>
+                        <field name="add_medicine">
+
+                            <tree string="Medicine" editable="bottom">
+                                <field name="med_name"/>
+                                <field name="qty"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
             </form>
         </field>
     </record>

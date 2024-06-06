@@ -70,4 +70,18 @@ class driver(models.Model):
         order_totals = self.read_group([('age', '>', 20)], ['name', 'dri_id'], ['age'])
         print(order_totals)
 
+    @api.model
+    def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None, order=None):
+        args = args or []
+        if name:
+            args += ['|', '|', ('name', operator, name), ('dri_id', operator, name), ('age', operator, name)]
+        return self._search(args, limit=limit, access_rights_uid=name_get_uid)
+
+    @api.model
+    def name_create(self, name):
+        print("name_create method is call...", name)
+        res = super(driver, self).name_create(name+'(Made by name_create)')
+        print(res)
+        return res
+
 

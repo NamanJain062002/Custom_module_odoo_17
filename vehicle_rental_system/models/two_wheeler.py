@@ -62,3 +62,5 @@ class twoWheeler(models.Model):
         return res
 
 
+
+

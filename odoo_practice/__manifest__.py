@@ -18,7 +18,8 @@
         'reports/report.xml',
         'wizards/print_sale_excel_view.xml',
         'views/res_partner_inherit_view.xml',
-        'data/birthday_template.xml'
+        'data/birthday_template.xml',
+        'views/tree_view_inherit.xml'
     ],
 
     'installable': True,

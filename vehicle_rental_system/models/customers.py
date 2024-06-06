@@ -13,9 +13,27 @@ class customer(models.Model):
                                     string="Vehicle Type", required=True)
     rent_date = fields.Datetime(string="Rent Date")
     return_date = fields.Datetime(string="Return date")
+    discount = fields.Boolean(string="Discount Available", readonly=1)
     total_days = fields.Integer(string="Total Days", compute="calc_days")
 
     is_premium_list = fields.Integer(string='is_premium_list', compute='_compute_listed_property_count')
+    customer_with_fourwheeler = fields.Integer(string="Customer With Fourwheeler", compute="calc_customer_with_fourwheeler")
+
+
+
+    @api.depends('vehicle_type')
+    def calc_customer_with_fourwheeler(self):
+        self.customer_with_fourwheeler = self.env['vehicle.customer'].search_count([('vehicle_type', '=', 'four wheeler')])
+
+    def get_four_wheeler(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Customer With Fourwheeler',
+            'res_model': 'vehicle.customer',
+            'view_mode': 'tree,form',
+            'target': 'new',
+            'domain': [('vehicle_type', '=', 'four wheeler')]
+        }
 
     def action_order_list(self):
         return {
@@ -37,6 +55,7 @@ class customer(models.Model):
     @api.model
     def create(self, vals):
         res = super(customer, self).create(vals)
+
         if 'is_premium' in vals and vals['is_premium']:
             # If the customer is premium, create a record in PremiumCustomer model
             self.env['vehicle.premium'].create({

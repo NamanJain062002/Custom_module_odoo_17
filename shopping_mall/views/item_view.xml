@@ -7,19 +7,31 @@
             <field name="arch" type="xml">
                 <form string="Shopping Mall Items">
                     <header>
-                        <button name="%(shopping_review_action_id)d" type="action" string="Review" class="btn-primary"/>
+                        <button name="%(shopping_review_action_id)d" type="action" string="Review" class="btn-primary"
+                                groups="shopping_mall.group_shopping_mall_customer_record_access"/>
+                        <button name="get_read_group" string="Read Group" type="object"/>
                     </header>
                     <sheet>
 
                         <group>
+                            <h1>
+
+                                    <field name="item_id"/>
+
+                            </h1>
                             <group>
                                 <field name="item_name"/>
-                                <field name="item_id"/>
+
+                                <!--                                 <field name="total_price"/>-->
+                                <field name="item_img" widget="image" class="oe_avatar"/>
+
                             </group>
                             <group>
-                                <field name="item_img" widget="image" class="oe_avatar"/>
+
+                                <field name="currency_id"/>
                                 <field name="price"/>
                             </group>
+
                         </group>
                     </sheet>
                 </form>

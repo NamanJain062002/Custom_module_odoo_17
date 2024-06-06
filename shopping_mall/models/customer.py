@@ -12,10 +12,12 @@ from io import BytesIO
 
 class customer(models.Model):
     _name = 'shopping.customer'
+    _inherit = ['mail.thread']
     _description = 'information about customers'
 
     name = fields.Char(string="Name", required=1)
     dob = fields.Date(string="Date Of Birth")
+    email = fields.Char(string="Email")
     cus_id = fields.Char(string="Customer ID", readonly=1)
     shopping_date = fields.Date(string="Shopping Date")
     billing_counter = fields.Selection(
@@ -23,7 +25,7 @@ class customer(models.Model):
          ('counter 5', 'Counter 5'), ], string="Billing Counter")
     amount_paid = fields.Boolean(string="Amount Paid", default=False)
     supper_customer = fields.Boolean(string=" Is Super Customer")
-    items = fields.One2many(string="Items", comodel_name='shopping.item', inverse_name='item_name')
+    items = fields.Many2many(string="Items", comodel_name='shopping.item')
     bill_amount = fields.Float(string="Bill Amount", default=0, compute="calc_bill_amount")
     gst = fields.Float(string="GST", default=0, readonly=1, compute="calc_gst")
     total_amount = fields.Float(string="Total Amount", compute="_calc_total_amount")
@@ -31,6 +33,8 @@ class customer(models.Model):
     dob_day = fields.Integer(string='Day of Birth', compute='_compute_dob_day', store=True)
     dob_month = fields.Integer(string='Month of Birth', compute='_compute_dob_month', store=True)
     super_customer_count = fields.Integer(compute="calc_count_super_costomer")
+
+
     @api.depends('dob')
     def _compute_dob_day(self):
         # This code is for calculating date from dob which we use in cron method temp_method
@@ -56,9 +60,7 @@ class customer(models.Model):
         for rec in customer_with_birthday:
             print("Happy birthday ", rec.name)
 
-    def chk(self):
-        val = self.env.ref('shopping_mall.shopping_customer_form_view_id')
-        print(val.name)
+
 
 
     def print_excel(self):
@@ -129,10 +131,10 @@ class customer(models.Model):
     def send_email(self):
         # template_id = self.env.ref('school.mail_template_blog')  # Replace 'your_module.email_template_id' with the actual ID of your email template
         # template_id.send_mail(self.id, force_send=True)
-        self.ensure_one()
         # self.order_line._validate_analytic_distribution()
         lang = self.env.context.get('lang')
         mail_template = self.env.ref('shopping_mall.mail_template_shopping_customer_id')
+
         if mail_template and mail_template.lang:
             lang = mail_template._render_lang(self.ids)[self.id]
         ctx = {
@@ -190,13 +192,20 @@ class customer(models.Model):
 
     @api.model
     def create(self, vals):
+
         # Code for ir sequence
         if vals.get('cus_id', _('New')) == _('New'):
             vals['cus_id'] = self.env['ir.sequence'].next_by_code('customer.sequence') or _('New')
 
-        # code to create new record in paid bills
+
 
         res = super(customer, self).create(vals)
+
+        if res.email:
+            template = self.env.ref('shopping_mall.template_shopping_customer_mail_id')
+            template.send_mail(res.id, force_send=True)
+
+        # code to create new record in paid bills
         if vals.get('amount_paid'):
             record = self.env['shopping.paidbill'].create({
                 'name': vals.get('name'),
@@ -236,7 +245,6 @@ class customer(models.Model):
     def unlink(self):
         print("HI 1")
         temp_id = self.cus_id
-        print(temp_id)
         if self.amount_paid:
             record = self.env['shopping.paidbill'].search([('cus_id', '=', temp_id)])
             for rec in record:
