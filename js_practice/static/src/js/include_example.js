@@ -23,5 +23,6 @@ WebsiteSale.include({
         this.autoStreetTwo.querySelectorAll("input").forEach((input) => {
                                 input.value = "Include Example";
                             });
-    },
+      },
+    }
 });

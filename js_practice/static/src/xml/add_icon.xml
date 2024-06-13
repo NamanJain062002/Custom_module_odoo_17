@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <templates xml:space="preserve">
-    <t t-name="add_icon_SearchBar" t-inherit="web.FormStatusIndicator" t-inherit-mode="extension">
+    <t t-name="add_icon_SearchBar" t-inherit="web.FormStatusIndicator" t-inherit-mode="primary">
         <div>
             <xpath expr="//div[@hasclass('o_form_status_indicator_buttons')]" position="inside">
                 <i class="fa fa-male" data-tooltip="Male Icon"></i><!-- Add your icon here, using Font Awesome for example -->

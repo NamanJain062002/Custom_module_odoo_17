@@ -3,7 +3,7 @@
     'version': '1.0',
     'summary': 'Mange the buisness activity in mall',
     'author': 'Naman Jain',
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail', 'website'],
     'data': [
         'security/ir.model.access.csv',
         'security/group.xml',
@@ -17,9 +17,15 @@
         'reports/report.xml',
         'views/menu_view.xml',
         'data/email_template.xml',
-        'data/mail_customer.xml'
+        'data/mail_customer.xml',
+        'views/template.xml'
 
     ],
+    'assets': {
+        'web.assets_frontend':[
+            # 'shopping_mall/static/src/js/js_template.js'
+        ]
+},
 
     'installable': True,
     'application': True,

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <template id="shopping_template" name="shopping mall template">
+        <t t-call="website.layout">
+            <div class="public_widget">
+                This public widget
+            </div>
+        </t>
+    </template>
+</odoo>

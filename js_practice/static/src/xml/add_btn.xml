@@ -6,4 +6,13 @@
                 CreateReport Dummy</button>
         </xpath>
     </t>
+
+      <t t-name="js_practice.expensebtn" t-inherit="web_gantt.GanttView.Buttons"  t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_gantt_buttons_container')]" position="after">
+            <button class="btn btn-secondary" t-on-click="hi_method">
+                TIME
+            </button>
+        </xpath>
+    </t>
+
 </templates>

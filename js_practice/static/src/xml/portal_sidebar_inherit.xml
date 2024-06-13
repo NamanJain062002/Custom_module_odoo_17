@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="js_practice.portalBtn" t-inherit="frontend_layout"  t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('d-print-none col-lg-3 col-xl-4')]" position="inside">
+            <button class="btn btn-secondary">
+                CreateReport Dummy
+            </button>
+        </xpath>
+    </t>
+</templates>

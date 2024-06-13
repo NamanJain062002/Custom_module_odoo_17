@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="js_practice.controller_btn" t-inherit="web.FormView" t-inherit-mode="primary">
+        <xpath expr="//t[@t-set-slot='layout-actions']" position="inside">
+            <button class="btn btn-primary" t-on-click="ControllerMethod">
+                Button
+            </button>
+        </xpath>
+    </t>
+
+
+        <t t-name="js_practice.list_btn" t-inherit="web.ListView" >
+        <xpath expr="//t[@t-set-slot='layout-buttons']" position="inside">
+            <button class="btn btn-primary" t-on-click="demo_method">
+                DEMO
+            </button>
+        </xpath>
+    </t>
+</templates>
