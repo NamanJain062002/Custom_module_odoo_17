@@ -8,6 +8,7 @@
         'security/ir.model.access.csv',
         'views/practice_view.xml',
         'views/sale.xml',
+        'views/salePerson.xml',
         'views/commission_sale_order_view.xml',
         'views/commission_admin_view.xml',
         'views/submenu_reporting_excel.xml',
@@ -20,6 +21,7 @@
         'views/res_partner_inherit_view.xml',
         'data/birthday_template.xml',
         'views/tree_view_inherit.xml'
+
     ],
 
     'installable': True,

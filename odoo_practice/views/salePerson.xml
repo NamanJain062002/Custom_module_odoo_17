@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+           <record model="ir.ui.view" id="sale_person_formview_id">
+            <field name="name">Sale Person</field>
+            <field name="model">sale.person</field>
+            <field name="arch" type="xml">
+                <form string="Sale Person">
+                    <sheet>
+                        <group>
+                           <field name="name"/>
+                           <field name="no_of_orders"/>
+                           <field name="total_sale_amount"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+            <record model="ir.actions.act_window" id="sale_person_action_id">
+            <field name="name">Sale Person</field>
+            <field name="res_model">sale.person</field>
+            <field name="view_mode">form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_empty_folder">
+                    There is no records of any Commission
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

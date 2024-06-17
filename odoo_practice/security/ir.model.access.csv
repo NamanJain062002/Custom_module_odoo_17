@@ -3,3 +3,4 @@ odoo_practice.access_print_wizard,access_print_wizard,odoo_practice.model_print_
 odoo_practice.access_sale_commission,access_sale_commission,odoo_practice.model_sale_commission,base.group_user,1,1,1,1
 odoo_practice.access_sale_admin,access_sale_admin,odoo_practice.model_sale_admin,base.group_user,1,1,1,1
 odoo_practice.access_sale_excel,access_sale_excel,odoo_practice.model_sale_excel,base.group_user,1,1,1,1
+odoo_practice.access_sale_person,access_sale_person,odoo_practice.model_sale_person,base.group_user,1,1,1,1

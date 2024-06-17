@@ -19,11 +19,11 @@
             'js_practice/static/src/js/custom_controller.js',
             'js_practice/static/src/xml/custom_controller_template.xml',
             'js_practice/static/src/js/custom_list_controller.js'
-
-
             # 'js_practice/static/src/xml/portal_sidebar_inherit.xml'
         ],
         'web.assets_frontend': [
+            'js_practice/static/src/js/publicWidget_example.js',
+            # 'js_practice/static/src/js/include_example.js'
             # 'js_practice/static/src/xml/portal_sidebar_inherit.xml',
 
         ]
