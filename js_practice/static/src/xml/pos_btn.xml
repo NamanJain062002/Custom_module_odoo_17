@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+<t t-name="point_of_sale.CreateButton">
+
+ <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="onClick">
+
+ <i class="fa fa-pencil-square" role="img"
+
+    aria-label="Custom Alert" title="Custom Alert"/>
+
+     <span>Custom PopUp</span>
+
+ </button>
+</t>
+
+    <t t-name="point_of_sale.PaymentCreateButton" t-inherit="point_of_sale.PaymentScreenButtons" t-inherit-mode="extension">
+<xpath expr="//div[hasclass('payment-buttons')]" position="inside">
+        <label for="fname">Payment Button count</label>
+     <input type="text" id="fname" name="fname" t-model="state.count"/>
+ <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="payment_method">
+
+ <i class="fa fa-pencil-square" role="img"
+
+    aria-label="Custom Alert" title="Custom Alert"/>
+
+     <span>Payment Button</span>
+
+ </button>
+
+        </xpath>
+    </t>
+
+<!--    Props child template-->
+
+<!--    <t t-name="child_component">-->
+<!--        <div>-->
+<!--            <p>Count: <t t-esc="props.count"/></p>-->
+<!--        </div>-->
+<!--    </t>-->
+
+</templates>
