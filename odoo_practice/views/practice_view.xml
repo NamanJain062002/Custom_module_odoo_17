@@ -20,6 +20,7 @@
                 <!-- Modify or extend the search view here -->
                 <xpath expr="//search" position="inside">
                     <field name="new_data" string="New Data"/>
+
                 </xpath>
             </field>
         </record>
@@ -55,6 +56,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='partner_id']" position="after">
                     <field name="new_data"/>
+
                 </xpath>
             </field>
         </record>
@@ -67,6 +69,8 @@
                 <xpath expr="//group[@name='sale_header']/group[@name='partner_details']/field[@name='partner_id']"
                        position="after">
                     <field name="new_data"/>
+                      <field name="invisible_field" invisible="flag==False"/>
+                      <field name="flag" invisible="1"/>
                 </xpath>
             </field>
         </record>

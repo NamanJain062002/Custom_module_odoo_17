@@ -8,34 +8,57 @@
 
     aria-label="Custom Alert" title="Custom Alert"/>
 
-     <span>Custom PopUp</span>
+     <span>Clear Cart</span>
 
  </button>
 </t>
 
-    <t t-name="point_of_sale.PaymentCreateButton" t-inherit="point_of_sale.PaymentScreenButtons" t-inherit-mode="extension">
-<xpath expr="//div[hasclass('payment-buttons')]" position="inside">
-        <label for="fname">Payment Button count</label>
-     <input type="text" id="fname" name="fname" t-model="state.count"/>
- <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="payment_method">
+    <t t-name="point_of_sale.CustomPOPbtn">
+
+ <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="onClick">
 
  <i class="fa fa-pencil-square" role="img"
 
     aria-label="Custom Alert" title="Custom Alert"/>
 
-     <span>Payment Button</span>
+     <span>Custom Note Button</span>
+
+ </button>
+</t>
+
+        <t t-name="point_of_sale.discountBtn">
+
+ <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="onClick">
+
+     <span>% Discount</span>
+
+ </button>
+</t>
+
+    <t t-name="point_of_sale.PaymentCreateButton" t-inherit="point_of_sale.PaymentScreenButtons"
+       t-inherit-mode="extension">
+    <xpath expr="//div[hasclass('payment-buttons')]" position="inside">
+        <label for="fname">Payment Button count</label>
+        <input type="text" id="fname" name="fname" t-model="state.count"/>
+        <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="payment_method">
+
+ <i class="fa fa-pencil-square" role="img"
+
+    aria-label="Custom Alert" title="Custom Alert"/>
+
+            <span>Payment Button</span>
 
  </button>
 
         </xpath>
     </t>
 
-<!--    Props child template-->
+    <!--    Props child template-->
 
-<!--    <t t-name="child_component">-->
-<!--        <div>-->
-<!--            <p>Count: <t t-esc="props.count"/></p>-->
-<!--        </div>-->
-<!--    </t>-->
+    <!--    <t t-name="child_component">-->
+    <!--        <div>-->
+    <!--            <p>Count: <t t-esc="props.count"/></p>-->
+    <!--        </div>-->
+    <!--    </t>-->
 
 </templates>

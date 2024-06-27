@@ -35,7 +35,8 @@
             'js_practice/static/src/js/pos_btn.js',
             'js_practice/static/src/xml/pos_btn.xml',
             'js_practice/static/src/js/pos_paymentScreenbtn.js',
-
+            'js_practice/static/src/js/customNote_pos.js',
+            'js_practice/static/src/js/discount_task.js'
             # 'js_practice/static/src/js/props_example.js'
         ]
     },

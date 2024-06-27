@@ -4,6 +4,8 @@ import io
 
 import dateutil.utils
 import xlsxwriter
+# from lxml import etree
+from lxml import etree
 
 from odoo import fields, models, api
 from odoo.exceptions import ValidationError
@@ -12,6 +14,7 @@ from odoo.exceptions import ValidationError
 class practice(models.Model):
     _name = 'pratice.pratice'
     _description = "For Practice purpose"
+
 
 # class ResPartner(models.Model):
 #     _inherit = 'res.partner'
@@ -22,11 +25,17 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
     new_data = fields.Char(string="New Data")
     commission = fields.Float(string="Commission", compute="calc_commission")
+    invisible_field = fields.Char(string="Invisible Field")
+    flag = fields.Boolean(string="flag", default=False)
 
-
+    @api.onchange('partner_id')
+    def invisible_method(self):
+        if self.partner_id:
+            self.flag = True
+        else:
+            self.flag = False
     def demo(self):
         pass
-
 
     def print_montly_orders(self):
         print('1')
@@ -34,7 +43,8 @@ class SaleOrder(models.Model):
         today_date = datetime.today()
         last_month_date = today_date - timedelta(days=today_date.day)
 
-        last_month_orders = self.search([('user_id', '=', admin), ('date_order', '>=', last_month_date), ('date_order', '<=', today_date)])
+        last_month_orders = self.search(
+            [('user_id', '=', admin), ('date_order', '>=', last_month_date), ('date_order', '<=', today_date)])
 
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output)
@@ -100,7 +110,6 @@ class SaleOrder(models.Model):
             'target': 'self'
         }
 
-
     @api.model
     def create(self, vals):
         res = super(SaleOrder, self).create(vals)
@@ -144,6 +153,7 @@ class stockPicking(models.Model):
     _inherit = 'stock.picking'
     new_data = fields.Char(string="New Data")
 
+
 class ResPartner(models.Model):
     _inherit = 'res.partner'
     commission = fields.Float(string="Commission")
@@ -154,9 +164,10 @@ class ResPartner(models.Model):
         print("NAME GET")
         result = []
         for rec in self:
-            name = rec.name+rec.email
+            name = rec.name + rec.email
             result.append((rec.id, name))
         return result
+
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'

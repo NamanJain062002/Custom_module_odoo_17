@@ -4,7 +4,6 @@ import { patch } from "@web/core/utils/patch";
 import { ExpenseListController } from '@hr_expense/views/list';
 
 
-
 patch(ExpenseListController.prototype, {
 
         add_btn() {
@@ -12,7 +11,6 @@ patch(ExpenseListController.prototype, {
 //                 console.log(now)
 //                console.log(now.toLocaleString())
 // create a new Date object with the current date and time
-
 
         var date = new Date().add;
 
@@ -23,6 +21,7 @@ patch(ExpenseListController.prototype, {
         console.log(londonTime)
 
             alert("Hi")
+
             },
 
 });
