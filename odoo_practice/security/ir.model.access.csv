@@ -4,3 +4,4 @@ odoo_practice.access_sale_commission,access_sale_commission,odoo_practice.model_
 odoo_practice.access_sale_admin,access_sale_admin,odoo_practice.model_sale_admin,base.group_user,1,1,1,1
 odoo_practice.access_sale_excel,access_sale_excel,odoo_practice.model_sale_excel,base.group_user,1,1,1,1
 odoo_practice.access_sale_person,access_sale_person,odoo_practice.model_sale_person,base.group_user,1,1,1,1
+odoo_practice.access_res_location,access_res_location,odoo_practice.model_res_location,base.group_user,1,1,1,1

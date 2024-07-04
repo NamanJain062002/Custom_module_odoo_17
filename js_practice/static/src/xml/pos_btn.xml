@@ -21,7 +21,7 @@
 
     aria-label="Custom Alert" title="Custom Alert"/>
 
-     <span>Custom Note Button</span>
+     <span>Add Notes</span>
 
  </button>
 </t>
@@ -60,5 +60,93 @@
     <!--            <p>Count: <t t-esc="props.count"/></p>-->
     <!--        </div>-->
     <!--    </t>-->
+
+        <t t-name="point_of_sale.customNote" t-inherit="point_of_sale.OrderWidget"
+       t-inherit-mode="extension">
+         <xpath expr="//div[hasclass('order-container')]" position="after">
+          <span class="bg-secondary custom_note"></span>
+        </xpath>
+    </t>
+
+
+    <t t-name="point_of_sale.Recept_note" t-inherit="point_of_sale.OrderReceipt"
+       t-inherit-mode="extension">
+         <xpath expr="//div[hasclass('pos-receipt-amount')]" position="before">
+          <span class="Recept_note">Custom Note :- <t t-esc="props.data.note"/></span><br/>
+          <span class="Location">Location :- <t t-esc="props.data.location_recept"/></span>
+        </xpath>
+    </t>
+
+<!--    Add a sundry customer button in POS-->
+     <t t-name="point_of_sale.SundryCustomerBtn" t-inherit="point_of_sale.PartnerListScreen"
+       t-inherit-mode="extension">
+         <xpath expr="//div[hasclass('search-bar-container')]" position="after">
+
+          <button class="bg-success text-white p-1 rounded" t-on-click="set_sundry_customer">
+                  <div class="d-flex justify-content-center align-items-center ">
+                    <span class="d-flex justify-content-center align-items-center rounded-circle me-2 text-bg-dark p-2">
+                        <i class="fa fa-user" role="img" aria-label="Customer" title="Customer" />
+                    </span>
+                    <div class="fw-bolder">
+                        Set Sundry Customer
+                    </div>
+                </div>
+<!--              <div class="py-3">-->
+<!--                   <span class="p-2 m-0 rounded-circle text-bg-dark">-->
+<!--                  <i class="fa fa-user" role="img" aria-label="Customer" title="Customer" />-->
+<!--                 </span>-->
+<!--               </div>-->
+<!--              <div>-->
+<!--                 <p class="text-smaller">Sundry Customer</p>-->
+<!--              </div>-->
+          </button>
+        </xpath>
+    </t>
+
+
+    <t t-name="point_of_sale.locationBtn">
+        <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="() => this.OnClick()" >
+
+                    <span t-esc="state.locationText"/>
+
+            </button>
+    </t>
+
+     <t t-name="point_of_sale.CustomButtonPopup" owl="1">
+ <div class="popup custom_popup">
+            <!-- Modal Header -->
+            <div class="modal-header justify-content-center">
+                <h2 class="modal-title">
+                    <t t-esc="props.title"/>
+                </h2>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body custom-form-view">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Location:</label>
+                        <select class="form-control" id="exampleFormControlSelect1" t-model="state.inputValue">
+                            <option>Select Location</option>
+                            <t t-foreach="props.locations" t-as="location" t-key="props.locations">
+                                <option t-esc="location"/>
+                            </t>
+                        </select>
+                      </div>
+                </form>
+            </div>
+            <!-- Modal Footer -->
+            <div class="footer footer-flex modal-footer justify-content-end">
+                <div class="button confirm btn btn-lg btn-primary"
+                        t-on-click="confirm">
+                    <t t-esc="props.confirmText"/>
+                </div>
+                <div class="button cancel btn btn-lg"
+                        t-on-click="cancel">
+                    <t t-esc="props.closeText"/>
+                </div>
+            </div>
+        </div>
+
+     </t>
 
 </templates>

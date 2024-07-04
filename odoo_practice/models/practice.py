@@ -237,3 +237,106 @@ class AccountPaymentTerm(models.Model):
             name = rec.name + " NAMAN"
             res.append((rec.id, name))
         return res
+
+class PosInherit(models.Model):
+    _inherit = 'pos.order'
+
+    custom_note = fields.Char(string="Custom Note")
+    amount_total = fields.Float(string="Total Amount")
+    location = fields.Char(string="Location")
+
+
+    def get_Partner(self):
+        ans = self.env['res.partner'].browse(63)
+        print(ans.name)
+        return ans.name
+
+    @api.model
+    def _order_fields(self, ui_order):
+        res = super(PosInherit, self)._order_fields(ui_order)
+        res['custom_note'] = ui_order.get('notes')
+        res['note'] = ui_order.get('notes')
+        res['amount_total'] = ui_order.get('amount_total')
+        res['location'] = ui_order.get('location_pos')
+
+        return res
+
+    def get_dis(self):
+        print(self)
+        param_obj = self.env['ir.config_parameter'].sudo()
+        discount_percent = param_obj.get_param('discount_percent')
+        # if float(discount_percent) > 100 or float(discount_percent) <= 0:
+        #     print("Invalid")
+        #     ValidationError("Invalid Discount Percentage")
+        # else:
+        return float(discount_percent)
+        # for i in disc:
+        #     print(i.discount_percent)
+        #     return i.discount_percent
+    # @api.onchange('custom_note')
+    # def temp(self):
+    #     if self.custom_note:
+    #         self.note = self.custom_note
+
+
+    # @api.model
+    # def create(self, vals_list):
+    #   session = self.env['pos.session'].browse(vals_list['session_id'])
+    #   print(session)
+    #   if session:
+    #       orders = self.env['pos.order'].search([('session_id', '=', session.id)])
+    #       print(orders)
+
+      # vals = self._complete_values_from_session(session, vals_list)
+
+
+      # return super().create(vals_list)
+
+class ResConfig(models.TransientModel):
+    _inherit = 'res.config.settings'
+
+    discount_percent = fields.Integer(
+        string="Discount %",
+        config_parameter='discount_percent'
+    )
+
+
+    location = fields.Many2many(
+        string='Locations',
+        related='pos_config_id.location_ids',
+        readonly=False,
+    )
+
+
+
+
+
+
+    @api.constrains('discount_percent')
+    def set_discount(self):
+        for rec in self:
+            if rec.discount_percent <= 0 or rec.discount_percent > 100:
+                raise ValidationError("Invalid Discount Percent")
+
+
+class ResSettingShoppingMall(models.TransientModel):
+    _inherit = 'res.config.settings'
+
+    tax = fields.Float(string="Tax %",  config_parameter='tax')
+
+class PosConfig(models.Model):
+    _inherit = 'pos.config'
+    location_ids = fields.Many2many('res.location', string='Locations')
+
+    def get_locations(self):
+       result = []
+       data = self.env['pos.config'].search([])
+       for i in data:
+          for j in i.location_ids:
+             result.append(j.location)
+
+       return result
+
+
+
+

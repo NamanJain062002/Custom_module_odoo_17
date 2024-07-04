@@ -17,6 +17,9 @@
        <menuitem id="shopping_res_customer_submenu" name="Res Customers" parent="shopping_mall_main_menu"
                  action="account.res_partner_action_customer"
             />
+    <menuitem id="shopping_res_customer_submenu" name="Res Location" parent="shopping_mall_main_menu"
+                 action="odoo_practice.res_location_action_id"
+            />
 
 
 

@@ -2,7 +2,7 @@
     'name': 'Practice',
     'summary': 'JS',
     'author': 'Naman Jain',
-    'depends': ['base', 'web', 'hr_expense', 'website_sale', 'web_gantt', 'point_of_sale'],
+    'depends': ['base', 'web', 'hr_expense', 'website_sale', 'web_gantt', 'point_of_sale', 'pos_sale'],
     'data': [
         'views/connection.xml'
     ],
@@ -36,8 +36,10 @@
             'js_practice/static/src/xml/pos_btn.xml',
             'js_practice/static/src/js/pos_paymentScreenbtn.js',
             'js_practice/static/src/js/customNote_pos.js',
-            'js_practice/static/src/js/discount_task.js'
-            # 'js_practice/static/src/js/props_example.js'
+            'js_practice/static/src/js/discount_task.js',
+            'js_practice/static/src/js/SuntryCustomer.js',
+            'js_practice/static/src/js/location_button.js',
+            'js_practice/static/src/js/CustomPopUp.js'
         ]
     },
 

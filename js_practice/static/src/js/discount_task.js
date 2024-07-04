@@ -14,36 +14,42 @@ export class discountBtn extends Component {
     setup() {
         this.pos = usePos();
         this.popup = useService("popup");
+        this.orm = useService("orm");
     }
     async onClick() {
-        const selectedOrderline = this.pos.get_order().get_orderlines();
-        // FIXME POSREF can this happen? Shouldn't the orderline just be a prop?
-        if (!selectedOrderline) {
-            return;
+          const selectedOrderline = this.pos.get_order().get_orderlines();
+//          console.log("fkjbebvjef")
+        const res = await this.orm.call('pos.order', 'get_dis',['true']);
+        console.log(res)
+           for(let order of selectedOrderline){
+            order.set_discount(res);
         }
-        const { confirmed, payload: inputNote } = await this.popup.add(TextAreaPopup, {
-//            startingValue: selectedOrderline.get_customer_note(),
-            title: _t("Add Discount %"),
-        });
+
+//        // FIXME POSREF can this happen? Shouldn't the orderline just be a prop?
+//        if (!selectedOrderline) {
+//            return;
+//        }
+//        const { confirmed, payload: inputNote } = await this.popup.add(TextAreaPopup, {
+////            startingValue: selectedOrderline.get_customer_note(),
+//            title: _t("Add Discount %"),
+//        });
+//
+//
+//
+//        if (confirmed) {
+//         if ((inputNote > 100) || (inputNote <= 0)){
+//           this.popup.add(ErrorPopup, {
+//                    title: _t("You cant add invalid discount"),
+//                    body: _t(
+//                        "Invalid discount percentage. Please enter a value between 0% and 100%.",
+//                    ),
+//                    cancelKey: true,
+//                });
+//        }
+//        else{
 
 
-
-        if (confirmed) {
-         if ((inputNote > 100) || (inputNote <= 0)){
-           this.popup.add(ErrorPopup, {
-                    title: _t("You cant add invalid discount"),
-                    body: _t(
-                        "Invalid discount percentage. Please enter a value between 0% and 100%.",
-                    ),
-                    cancelKey: true,
-                });
-        }
-        else{
-         for(let order of selectedOrderline){
-            order.set_discount(inputNote);
-        }
-        }
-    }
+//    }
 }
 }
 

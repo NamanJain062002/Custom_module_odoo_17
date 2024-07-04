@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+          <record id="res_location_form_id" model="ir.ui.view">
+            <field name="name">res.location.form.id</field>
+            <field name="model">res.location</field>
+            <field name="arch" type="xml">
+              <form string="Location">
+                  <sheet>
+                      <group>
+                          <field name="location"/>
+                      </group>
+                  </sheet>
+              </form>
+            </field>
+        </record>
+
+          <record model="ir.actions.act_window" id="res_location_action_id">
+            <field name="name">Location</field>
+            <field name="res_model">res.location</field>
+            <field name="view_mode">form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_empty_folder">
+                    There is no records of any location
+                </p>
+            </field>
+        </record>
+    </data>
+
+</odoo>
