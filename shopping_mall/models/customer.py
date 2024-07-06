@@ -255,3 +255,11 @@ class customer(models.Model):
                 rec.unlink()
 
         return super(customer, self).unlink()
+
+    def copy(self, default=None):
+        default = dict(default or {})
+        default['amount_paid'] = False
+        res = super().copy(default)
+        # res['amount_paid'] = False
+
+        return res

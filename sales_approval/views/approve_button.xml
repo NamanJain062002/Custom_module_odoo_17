@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Extend existing form view of sale.order -->
+        <record id="view_sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!-- Add state field after 'sent' -->
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                     <button name="sale_approval" string="Approve" type="object"  groups="sales_approval.group_sale_approve_button_access"/>
+                </xpath>
+                 <xpath expr="//field[@name='state']" position="replace">
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,to_approve,sale"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

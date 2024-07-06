@@ -39,7 +39,10 @@
             'js_practice/static/src/js/discount_task.js',
             'js_practice/static/src/js/SuntryCustomer.js',
             'js_practice/static/src/js/location_button.js',
-            'js_practice/static/src/js/CustomPopUp.js'
+            'js_practice/static/src/js/CustomPopUp.js',
+            'js_practice/static/src/js/emi_button.js',
+            'js_practice/static/src/xml/EMI_popup.xml',
+            'js_practice/static/src/js/emi_popup.js',
         ]
     },
 

@@ -18,7 +18,7 @@ static template = 'point_of_sale.locationBtn';
         this.orm = useService("orm");
         this.pos = usePos();
          this.popup = useService("popup");
-                 this.state = useState({ locationText: _t("Location") });
+         this.state = useState({ locationText: _t("Location") });
 
     }
     async OnClick() {

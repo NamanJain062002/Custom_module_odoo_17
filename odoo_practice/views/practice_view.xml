@@ -69,6 +69,7 @@
                 <xpath expr="//group[@name='sale_header']/group[@name='partner_details']/field[@name='partner_id']"
                        position="after">
                     <field name="new_data"/>
+                      <field name="product_quantity"/>
                       <field name="invisible_field" invisible="flag==False"/>
                       <field name="flag" invisible="1"/>
                 </xpath>

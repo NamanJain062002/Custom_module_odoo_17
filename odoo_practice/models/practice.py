@@ -339,4 +339,49 @@ class PosConfig(models.Model):
 
 
 
+class SaleOrderProductQuantity(models.Model):
+    _inherit = 'sale.order'
+
+    product_quantity = fields.Integer(string="Product Quantity")
+
+    @api.model
+    def create(self, vals_list):
+        total_qty = 0
+        res = super(SaleOrderProductQuantity, self).create(vals_list)
+        for line in res.order_line:
+           for item in line:
+              item_type = item.product_template_id.detailed_type
+              if item_type == 'product':
+                total_qty += item.product_uom_qty
+
+        res['product_quantity'] = total_qty
+
+        return res
+
+
+
+
+    def write(self, vals):
+     res = super(SaleOrderProductQuantity, self).write(vals)
+     if 'order_line' in vals:
+        for order in self:
+            total_qty = 0
+            for line in order.order_line:
+                item_type = line.product_template_id.detailed_type
+                if item_type == 'product':
+                    total_qty += line.product_uom_qty
+
+            # Use sudo().write to update the product_quantity field to avoid recursion
+            # order.sudo().write({'product_quantity': total_qty})
+            order.product_quantity = total_qty
+
+        return res
+
+
+
+
+
+
+
+
 

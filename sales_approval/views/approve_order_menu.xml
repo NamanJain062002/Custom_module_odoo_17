@@ -1,0 +1,17 @@
+<odoo>
+         <record model="ir.actions.act_window" id="show_sale_order_to_approve_orders">
+            <field name="name">To Approve Orders</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state', '=', 'to_approve')]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_empty_folder">
+                    There is no records of any Customer
+                </p>
+            </field>
+        </record>
+     <menuitem id="sale_order_approve_orders_menu" name="To Approve Orders" parent="sale.sale_menu_root"
+              action="show_sale_order_to_approve_orders" groups="sales_approval.group_sale_approve_button_access"/>
+
+
+</odoo>

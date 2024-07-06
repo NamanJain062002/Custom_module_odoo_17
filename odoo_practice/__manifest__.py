@@ -27,5 +27,5 @@
 
     'installable': True,
     'application': True,
-    'sequence': -20,
+    # 'sequence': -20,
 }

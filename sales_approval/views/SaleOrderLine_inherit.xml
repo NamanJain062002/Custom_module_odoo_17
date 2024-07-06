@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <record id="sale_order_line_inherit_id" model="ir.ui.view">
+            <field name="name">sale.order.line.inherit.id</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!-- Add state field after 'sent' -->
+                <xpath expr="//field[@name='product_template_id']" position="after">
+                    <field name="product_image" widget="image" class="oe_avatar"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="stock_picking_inherit_id" model="ir.ui.view">
+            <field name="name">stock.picking.inherit.id</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <!-- Add state field after 'sent' -->
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="product_stock" widget="image" class="oe_avatar"/>
+                </xpath>
+            </field>
+        </record>
+
+           <record id="account_move_inherit_id" model="ir.ui.view">
+            <field name="name">account.move.inherit.id</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <!-- Add state field after 'sent' -->
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="account_item_image" widget="image" class="oe_avatar"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

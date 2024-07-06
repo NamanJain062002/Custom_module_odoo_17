@@ -1,0 +1,12 @@
+<odoo>
+    <record id="model_category_sale_approve_order" model="ir.module.category">
+        <field name="name">Sale Approve Access</field>
+        <field name="description">access rights of groups in Sale Approve Button</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="group_sale_approve_button_access" model="res.groups">
+        <field name="name">Approve Access</field>
+        <field name="category_id" ref="sales_approval.model_category_sale_approve_order"/>
+    </record>
+</odoo>
