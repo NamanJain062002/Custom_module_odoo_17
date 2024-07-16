@@ -3,7 +3,7 @@
     'version': '1.0',
     'summary': 'Mange Hospital work',
     'author': 'Naman Jain',
-    'depends': ['base'],
+    'depends': ['base', 'mail', 'account'],
     'data': ['security/ir.model.access.csv',
         'views/paitent_view.xml',
         'views/docter_view.xml',

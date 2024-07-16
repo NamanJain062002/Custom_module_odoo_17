@@ -3,7 +3,7 @@
     'version': '1.0',
     'summary': 'Practice purpose',
     'author': 'Naman Jain',
-    'depends': ['base', 'sale', 'sale_management', 'stock', 'mail', 'account', 'point_of_sale'],
+    'depends': ['base', 'sale', 'sale_management', 'stock', 'mail', 'account', 'point_of_sale', 'website_sale'],
     'data': [
         'security/ir.model.access.csv',
         'views/practice_view.xml',
@@ -22,7 +22,9 @@
         'data/birthday_template.xml',
         'views/tree_view_inherit.xml',
         'views/add_module_in_conf.xml',
-        'views/ResLocation_view.xml'
+        'views/ResLocation_view.xml',
+        'data/scedule_action.xml',
+        'views/website_template.xml'
     ],
 
     'installable': True,

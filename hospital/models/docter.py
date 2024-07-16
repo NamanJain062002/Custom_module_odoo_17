@@ -13,7 +13,9 @@ class docter(models.Model):
     base_salary = fields.Integer(string="Base Salary")
     allowance = fields.Integer(string="Allowance Amount")
     ctc = fields.Integer(string="Total CTC",compute='calc_ctc')
-    _sql_constraints = [('unique_name', 'UNIQUE (name)', 'docter name must be unique.')]
+    active = fields.Boolean('Active', default=True)  # used for Archived
+
+    # _sql_constraints = [('unique_name', 'UNIQUE (name)', 'docter name must be unique.')]
 
     # @api.onchange('base_salary')
     # def on_change(self):
@@ -30,3 +32,27 @@ class docter(models.Model):
             if record.allowance:
                 ctc += record.allowance
             record.ctc = ctc
+
+    @api.model
+    def create(self, vals):
+        print("self", self)
+        print("vals", vals) # vals['name']
+        print(vals['name'])
+        res = super(docter, self).create(vals)
+        print("self", self)
+        print("vals", vals)
+        print("res", res) # res['name']
+        print(res.name)
+        return res
+
+    def write(self, vals):
+        print("self>>>>>", self)
+        print("vals>>>>>>", vals)
+        res = super(docter, self).write(vals)
+        print("self>>>>>", self)
+        print("vals>>>>>>", vals)
+        print("res>>>>>", res)
+
+        return res
+
+

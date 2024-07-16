@@ -3,9 +3,121 @@
 <odoo>
     <template id="shopping_template" name="shopping mall template">
         <t t-call="website.layout">
-            <div class="public_widget">
-                This public widget
+            <div class="public_widget ">
+                <t t-foreach="names" t-as="name">
+                    <li>
+                        <t t-esc="name"/>
+                    </li>
+                </t>
             </div>
         </t>
     </template>
+
+     <template id="shopping_customer_id" name="shopping mall customer">
+            <div class="shopping_mall_customer">
+                <t t-foreach="customers" t-as="customer">
+                    <li>
+                        <t t-esc="customer.name"/>
+                    </li>
+                </t>
+            </div>
+    </template>
+
+      <template id="veera_custom_id">
+          VEERA !!!!
+    </template>
+
+
+     <template id="sale_order_data">
+            <div class="shopping_mall_customer">
+                <h3>Customer Name</h3>
+                <t t-foreach="sale_data" t-as="data">
+                    <li>
+                        <t t-esc="data.partner_id.name"/>
+                    </li>
+                </t>
+            </div>
+    </template>
+
+     <template id="thankyou">
+         <t t-call="website.layout">
+            <div class="shopping_mall_customer">
+            <h1 class="text-center alert alert-success bg-light">Thank You</h1>
+            </div>
+         </t>
+    </template>
+
+
+    <template id="my_model_image_form" name="My Model Image Form">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1 class="text-center">My Custom Odoo Website</h1>
+                <div>
+                     <img src="/shopping_mall/static/src/img/book.jpg" alt="Current Image" class="img-fluid"/>
+                </div>
+                <hr/>
+                <h3 class="text-center">Available Books</h3>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Internal Reference</th>
+                            <th>Sales Price</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Odoo Book</td>
+                            <td>9876</td>
+                            <td>1000</td>
+                            <td>Book</td>
+                        </tr>
+                        <tr>
+                            <td>C++ Book</td>
+                            <td>1234</td>
+                            <td>2324</td>
+                            <td>Book</td>
+                        </tr>
+                        <tr>
+                            <td>Python Book</td>
+                            <td>3455</td>
+                            <td>2000</td>
+                            <td>Book</td>
+                        </tr>
+                        <tr>
+                            <td>Java Book</td>
+                            <td>7654</td>
+                            <td>3000</td>
+                            <td>Book</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr/>
+                 <h3 class="text-center">Contact Us</h3>
+                <form method="post" enctype="multipart/form-data" action="/custom/thankyou" class="p-3 submit-form border border-dark rounded">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required="required"/>
+                        <label for="email">Email</label>
+                        <input type="name" class="form-control" id="email" name="email" required="required"/>
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" required="required"/>
+                        <label for="mobile">Mobile</label>
+                        <input type="number" class="form-control" id="mobile" name="mobile" required="required"/>
+                    </div>
+
+
+
+                    <button type="submit" class="submit-btn btn btn-primary">Submit</button>
+                </form>
+                <button type="button" class="btn btn-secondary widget-trigger">Trigger CustomWidget</button>
+            </div>
+        </t>
+    </template>
+
+
+
+
 </odoo>

@@ -1,4 +1,8 @@
+import uuid
+
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
+
 
 class SaleOrderinherit(models.Model):
     _inherit = 'sale.order'
@@ -7,7 +11,29 @@ class SaleOrderinherit(models.Model):
         ('to_approve', 'To Approve'),
     ])
 
+
+    @api.model
+    def create(self, vals):
+        res = super(SaleOrderinherit, self).create(vals)
+
+        if res.partner_id.name == 'ABC':
+            res.with_context(Name='Naman').sale_approval()
+        return res
+
+
+
     def sale_approval(self):
+        # token_model = self.env['ir.attachment']
+        # token_model.generate_access_token()
+        # self.env.context.get('active_id')
+        print(str(uuid.uuid4()))
+        active_id_value = self.env.context.get('Name')
+        show_context = self.env.context
+        print(show_context)
+        # sale_object = self.env['sale.order'].browse(active_id_value)
+        # # print(sale_object)
+        # sale_object.created_by = "NAMAN"
+        self.created_by = active_id_value
         self.state = 'sale'
 
     def action_confirm(self):
@@ -37,6 +63,14 @@ class ResConfig(models.TransientModel):
         string="Sale Limit",
         config_parameter='sale_limit'
     )
+
+    @api.constrains('sale_limit')
+    def chk_limit(self):
+        for limit in self:
+            if limit.sale_limit <= 0:
+                raise ValidationError("The sale limit can only be in positive")
+
+
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'

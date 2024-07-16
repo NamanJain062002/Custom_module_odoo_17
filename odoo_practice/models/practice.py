@@ -344,6 +344,8 @@ class SaleOrderProductQuantity(models.Model):
 
     product_quantity = fields.Integer(string="Product Quantity")
 
+
+
     @api.model
     def create(self, vals_list):
         total_qty = 0
@@ -376,6 +378,21 @@ class SaleOrderProductQuantity(models.Model):
             order.product_quantity = total_qty
 
         return res
+
+
+
+
+class ShoppingCustomerInherit(models.Model):
+    _inherit = 'shopping.customer'
+
+    def start_scedule_action(self):
+        print("I AM ON")
+
+# class IrAttachmentInherit(models.Model):
+#     _inherit = 'ir.attachment'
+#
+#
+#     def
 
 
 

@@ -1,3 +1,5 @@
+from lxml import etree
+
 from odoo import models, fields, api, _
 
 class item(models.Model):
@@ -12,6 +14,8 @@ class item(models.Model):
 
     # total_price = fields.Monetary(string='My Monetary Field')
     currency_id = fields.Many2one('res.currency', string='Currency')
+
+    extra_info = fields.Char('Extra Info')
 
 
 
@@ -37,6 +41,8 @@ class item(models.Model):
         default['item_name'] = 'ITEM'
         default['price'] = 100
 
+        print(default)
+
         return default
 
     def get_read_group(self):
@@ -46,3 +52,36 @@ class item(models.Model):
             groupby=['item_name'],
         )
         print(data)
+
+    # @api.model
+    # def _get_view(self, view_id=None, view_type='form', **options):
+    #     def make_delegated_fields_readonly(node):
+    #         for child in node.iterchildren():
+    #             if child.tag == 'field' and child.get('name') in delegated_fnames:
+    #                 child.set('attrs', "{'readonly': [('parent_id', '!=', False)]}")
+    #             else:
+    #                 make_delegated_fields_readonly(child)
+    #         return node
+    #
+    #     delegated_fnames = set(self._get_company_root_delegated_field_names())
+    #     arch, view = super()._get_view(view_id, view_type, **options)
+    #     arch = make_delegated_fields_readonly(arch)
+    #     return arch, view
+
+    # def _get_view(self, view_id=None, view_type='form', **options):
+    #     print("test Case 1")
+    #     # Call the super method to get the default view architecture
+    #     result = super(item, self)._get_view(view_id=view_id, view_type=view_type, **options)
+    #
+    #     if view_type == 'form' and self.currency_id.name == 'USD':
+    #         print("test Case 2")
+    #         doc = etree.XML(result['arch'])
+    #
+    #         # Find the location to insert the new field
+    #         for node in doc.xpath("//sheet"):
+    #             extra_field = etree.Element('field', name='extra_info')
+    #             node.append(extra_field)
+    #
+    #         result['arch'] = etree.tostring(doc, encoding='unicode')
+    #     print("test Case 3")
+    #     return result

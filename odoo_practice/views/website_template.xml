@@ -1,0 +1,7 @@
+<odoo>
+     <template id="temp_web_id" inherit_id="website_sale.products_item">
+        <xpath expr="//form[hasclass('oe_product_cart')]" position="inside">
+            <button>Click Me</button>
+        </xpath>
+    </template>
+</odoo>

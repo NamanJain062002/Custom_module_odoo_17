@@ -10,3 +10,5 @@ class MedicinePaitent(models.Model):
 
 
 
+
+

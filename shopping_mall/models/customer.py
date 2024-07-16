@@ -35,6 +35,14 @@ class customer(models.Model):
     super_customer_count = fields.Integer(compute="calc_count_super_costomer")
 
 
+
+    def print_hello(self):
+        print("hello")
+
+
+
+
+
     @api.depends('dob')
     def _compute_dob_day(self):
         # This code is for calculating date from dob which we use in cron method temp_method
@@ -192,12 +200,9 @@ class customer(models.Model):
 
     @api.model
     def create(self, vals):
-
         # Code for ir sequence
         if vals.get('cus_id', _('New')) == _('New'):
             vals['cus_id'] = self.env['ir.sequence'].next_by_code('customer.sequence') or _('New')
-
-
 
         res = super(customer, self).create(vals)
 
@@ -258,8 +263,11 @@ class customer(models.Model):
 
     def copy(self, default=None):
         default = dict(default or {})
+        print(default)
         default['amount_paid'] = False
+        print(default)
         res = super().copy(default)
+        print(default)
         # res['amount_paid'] = False
 
         return res

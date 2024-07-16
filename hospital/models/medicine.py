@@ -8,3 +8,5 @@ class Medicine(models.Model):
     medicine_name = fields.Char(string="Medicine")
     stock_available = fields.Integer(string="Stock Available")
 
+
+

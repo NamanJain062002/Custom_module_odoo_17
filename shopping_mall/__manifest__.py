@@ -23,7 +23,8 @@
     ],
     'assets': {
         'web.assets_frontend':[
-            # 'shopping_mall/static/src/js/js_template.js'
+            'shopping_mall/static/src/js/add_customWidget.js'
+            # 'shopping_mall/static/src/js/custom_web_page.js'
         ]
 },
 

@@ -7,6 +7,9 @@
                 <header>
                     <button name="%(hospital.hospital_paitent_action_id)d" type="action" string="Action Button" class="btn-primary"/>
                 </header>
+                <sheet>
+                     <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                        <field name="active" invisible="1"/>
                     <group>
                     <field name="name"/>
                     <field name="doc_id"/>
@@ -16,6 +19,7 @@
                         <field name="allowance"/>
                         <field name="ctc"/>
                     </group>
+                </sheet>
             </form>
         </field>
     </record>
@@ -34,6 +38,24 @@
             </tree>
         </field>
     </record>
+
+          <record model="ir.ui.view" id="hospital_docter_search_view_id">
+        <field name="name">hospital.docter.search.view.id</field>
+        <field name="model">hospital.docter</field>
+        <field name="arch" type="xml">
+            <search string="Hospital Tree">
+                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <field name="name"/>
+                    <field name="doc_id"/>
+                    <field name="assigned_pat"/>
+                    <field name="dep_id"/>
+                     <field name="base_salary"/>
+                    <field name="allowance"/>
+                    <field name="ctc"/>
+            </search>
+        </field>
+    </record>
+
         <record model="ir.actions.act_window" id="hospital_docter_action_id">
         <field name="name">Docters</field>
         <field name="res_model">hospital.docter</field>
