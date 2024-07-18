@@ -22,7 +22,13 @@ publicWidget.registry.customWidget = publicWidget.Widget.extend({
 
     chk_email: function(){
        let email = document.getElementById('email').value
-//       console.log(email)
+       let mobile = document.getElementById('mobile').value
+
+       if (mobile.length != 10){
+          alert("Mobile Number Must Be Of 10 Digit");
+          return false;
+        }
+
        let flag = 0;
        let ans = true;
        for(let i=0; i<email.length; i++){

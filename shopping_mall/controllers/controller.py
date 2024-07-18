@@ -33,9 +33,29 @@ class SaleOrderController(http.Controller):
 
 class CustomWebsite(http.Controller):
     @http.route('/custom', type='http', auth='public', website=True, csrf=False)
-    def website(self):
+    def website(self, **post):
+        # print(post)
+        # print(request.env.user.name)
         return request.render('shopping_mall.my_model_image_form')
 
     @http.route('/custom/thankyou', type='http', auth='public', website=True, csrf=False)
-    def thankyou(self):
+    def thankyou(self, **post):
+        print(post)
+        print(">>>>>>>", request.env.user.name)
+        if request.env.user.name == 'Public user':
+          request.env['shopping.public'].sudo().create({
+              'name': post.get('name'),
+              'email': post.get('email'),
+              'address': post.get('address'),
+              'mobile': post.get('mobile')
+          })
+        else:
+            request.env['shopping.form'].sudo().create({
+                'name': post.get('name'),
+                'email': post.get('email'),
+                'address': post.get('address'),
+                'mobile': post.get('mobile')
+            })
+
+
         return request.render('shopping_mall.thankyou')

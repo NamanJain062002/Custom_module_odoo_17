@@ -5,6 +5,7 @@ class StockPicking(models.Model):
    _inherit = "sale.order"
    @api.model
    def _get_view(self, view_id=None, view_type='form', **options):
+       print(options)
        arch, view = super()._get_view(view_id, view_type, **options)
        print("arch>>>>>>>>", arch)
        print("view>>>>>>>>", view)

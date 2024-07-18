@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+
     <menuitem id="shopping_mall_main_menu" name="Shopping Mall"/>
+
+<!--     <menuitem id="shopping_submit_form_submenu" name="Submited Forms" parent="shopping_mall_main_menu"-->
+<!--              action="shopping_customer_action_id"/>-->
 
     <menuitem id="shopping_customer_submenu" name="Customers" parent="shopping_mall_main_menu"
               action="shopping_customer_action_id"/>
+
 
     <menuitem id="shopping_item_submenu" name="Items" parent="shopping_mall_main_menu"
               action="shopping_item_action_id"/>
@@ -20,6 +25,8 @@
     <menuitem id="shopping_unpaidbill_submenu" name="Unpaid Bills" parent="shopping_bill_submenu"
               action="shopping_unpaidbill_action_id"/>
 
+
+
        <menuitem id="shopping_res_customer_submenu" name="Res Customers" parent="shopping_mall_main_menu"
                  action="account.res_partner_action_customer"
             />
@@ -27,5 +34,21 @@
     <menuitem id="shopping_res_location_submenu" name="Res Location" parent="shopping_mall_main_menu"
                  action="odoo_practice.res_location_action_id"
             />
+
+
+     <menuitem id="menu_parent_public_master"
+              name="Submited Forms"
+              parent="shopping_mall_main_menu"
+              />
+
+
+
+       <menuitem id="any_random_name_menu"
+              name="Public Forms"
+              parent="menu_parent_public_master"
+              action="some_random_name_form"
+              />
+
+
 
 </odoo>

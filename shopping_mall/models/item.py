@@ -22,6 +22,10 @@ class item(models.Model):
    # ORM METHOD create method
     @api.model
     def create(self, vals):
+        # print("before>>>",vals)
+        # res = super(item, self).create(vals)
+        # print("after>>>>", vals)
+        # return res
         products = self.env['shopping.item'].search([])
 
         # Get a list of names of the products

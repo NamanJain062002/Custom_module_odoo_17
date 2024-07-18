@@ -18,7 +18,10 @@
         'views/menu_view.xml',
         'data/email_template.xml',
         'data/mail_customer.xml',
-        'views/template.xml'
+        'views/template.xml',
+        'views/paid_bill_view.xml',
+        # 'views/form_view.xml',
+        'views/user_form_view.xml'
 
     ],
     'assets': {

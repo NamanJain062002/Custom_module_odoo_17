@@ -11,6 +11,9 @@ access_shopping_bill,shopping.bill,model_shopping_bill,base.group_user,1,1,1,1
 access_shopping_paidbill,shopping.paidbill,model_shopping_paidbill,base.group_user,1,1,1,1
 access_shopping_unpaidbill,shopping.unpaidbill,model_shopping_unpaidbill,base.group_user,1,1,1,1
 
+access_shopping_form,shopping.form,model_shopping_form,base.group_user,1,1,1,1
+access_shopping_public,shopping.public,model_shopping_public,base.group_user,1,1,1,1
+
 
 
 
